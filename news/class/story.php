@@ -40,7 +40,7 @@ class news_story extends XoopsObject {
 		$this->initVar ( 'story_alias', XOBJ_DTYPE_TXTBOX, '' );
 		$this->initVar ( 'story_status', XOBJ_DTYPE_INT, 1 );
 		$this->initVar ( 'story_slide', XOBJ_DTYPE_INT, 0 );
-      $this->initVar ( 'story_marquee', XOBJ_DTYPE_INT, 0 );		
+        $this->initVar ( 'story_marquee', XOBJ_DTYPE_INT, 0 );		
 		$this->initVar ( 'story_important', XOBJ_DTYPE_INT, 0 );
 		$this->initVar ( 'story_default', XOBJ_DTYPE_INT, 0 );
 		$this->initVar ( 'story_create', XOBJ_DTYPE_INT, '' );
@@ -699,6 +699,56 @@ class NewsStoryHandler extends XoopsPersistableObjectHandler {
 		//}	
 		return json_encode($ret);
 	} 
+
+
+	/*
+	 *
+	 *
+	 */
+	public function News_StoryJson($story_infos) {
+		/* if($story_infos['story_topic'] != 0){
+			$order = 'ASC';
+		} else {
+			$order = 'DESC';
+		} */
+
+		$ret = array ();
+		$criteria = new CriteriaCompo ();
+		if($story_infos['story_id'] != 0) {
+			$criteria->add ( new Criteria ( 'story_id', $story_infos['story_id'] , '>' ));
+		}
+		if($story_infos['story_topic'] != 0) {
+			$criteria->add ( new Criteria ( 'story_topic', $story_infos['story_topic'] ) );
+		} else {
+			$criteria->add ( new Criteria ( 'story_topic', 0 , '!=' ) );
+		}
+		$criteria->add ( new Criteria ( 'story_status', '1' ) );
+		$criteria->add ( new Criteria ( 'story_publish', 0 , '>' ));
+		$criteria->add ( new Criteria ( 'story_publish', time() , '<=' ));
+		$criteria->add ( new Criteria ( 'story_expire', 0 ));
+		$criteria->add ( new Criteria ( 'story_expire', time() , '>' ) ,'OR');
+		$criteria->setSort ( 'story_publish' );
+		$criteria->setOrder ( 'DESC' );
+		$criteria->setLimit ( $story_infos ['story_limit'] );
+		$obj = $this->getObjects ( $criteria, false );
+		if ($obj) {	
+		   foreach ( $obj as $root ) {
+				$tab = array ();
+				$tab = $root->toArray();
+				$json['story_id'] = $tab['story_id'];
+				$json['story_title'] = $tab['story_title'];
+				$json['story_alias'] = $tab['story_alias'];
+				$json['story_publish'] = $tab['story_publish'];
+				$json['story_topic'] = $tab['story_topic'];
+				$json['story_img'] = $tab['story_img'];
+				$json['story_body'] = '';
+				unset($tab);
+				$ret[] = $json;
+			}
+		}
+		return json_encode($ret);
+	} 
+
 	
 	/**
 	 * Get Content Count for user side

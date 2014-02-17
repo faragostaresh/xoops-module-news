@@ -31,11 +31,30 @@ if(!empty($op)) {
 	switch($op) {
 		// Get last story as json
 		case 'story':
-		   $story_infos =  array();
-		   $story_infos['story_id'] = NewsUtils::News_UtilityCleanVars ( $_REQUEST, 'storyid', 0, 'int' );
-		   $story_infos['story_topic'] = NewsUtils::News_UtilityCleanVars ( $_REQUEST, 'storytopic', 0, 'int' );
-		   $story_infos['story_limit'] = NewsUtils::News_UtilityCleanVars ( $_REQUEST, 'limit', 50, 'int' );
-		   $return = $story_handler->News_StoryJson($story_infos);
+		case 'liststory':
+			$story_infos =  array();
+			$story_infos['story_id'] = NewsUtils::News_UtilityCleanVars ( $_REQUEST, 'storyid', 0, 'int' );
+			$story_infos['story_topic'] = NewsUtils::News_UtilityCleanVars ( $_REQUEST, 'storytopic', 0, 'int' );
+			$story_infos['story_limit'] = NewsUtils::News_UtilityCleanVars ( $_REQUEST, 'limit', 50, 'int' );
+			$return = $story_handler->News_StoryJson($story_infos);
+			break;
+        // Get single story as json
+		case 'singlestory':
+			$ret = array();               
+			$story_id = NewsUtils::News_CleanVars ( $_REQUEST, 'storyid', 0, 'int' );
+        	$obj = $story_handler->get($story_id);
+        	$story = $obj->toArray();
+        	$json['story_id'] = $story['story_id'];
+        	$json['story_title'] = $story['story_title'];
+        	$json['story_alias'] = $story['story_alias'];
+        	$json['story_publish'] = $story['story_publish'];
+        	$json['story_topic'] = $story['story_topic'];
+        	$json['story_img'] = $story['story_img'];
+        	$json['story_body'] = strip_tags($story['story_short'] . ' ' . $story['story_text'], '<br>');
+        	$json['story_body'] = preg_replace('#<br\s*/?>#i', "\n", $json['story_body']);
+        	$ret[] = $json;
+			$return = json_encode($ret);
+        	unset($story);
 			break;
 		// vote to story	
 		case 'rate':

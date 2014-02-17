@@ -26,7 +26,7 @@ CREATE TABLE `news_story` (
 	`story_comments` int(10) unsigned NOT NULL,
 	`story_file` tinyint(3) NOT NULL,
 	`story_rating` double(6,4) NOT NULL,
-   `story_votes` int(10) unsigned NOT NULL,
+    `story_votes` int(10) unsigned NOT NULL,
 	`dohtml` tinyint(1) NOT NULL,
 	`dobr` tinyint(1) NOT NULL,
 	`doimage` tinyint(1) NOT NULL,
@@ -38,10 +38,10 @@ CREATE TABLE `news_story` (
 	KEY `story_title` (`story_title`),
 	KEY `story_create` (`story_create`),
 	KEY `story_publish` (`story_publish`),
-   KEY `story_expire` (`story_expire`),
-   KEY `story_uid` (`story_uid`),
-   KEY `story_type` (`story_type`),
-   KEY `select` (`story_topic`, `story_status`, `story_publish`, `story_expire`),
+	KEY `story_expire` (`story_expire`),
+	KEY `story_uid` (`story_uid`),
+	KEY `story_type` (`story_type`),
+	KEY `select` (`story_topic`, `story_status`, `story_publish`, `story_expire`),
 	FULLTEXT KEY `search` (`story_title`,`story_short`,`story_text`,`story_subtitle`)
 ) ENGINE=MyISAM;
 
@@ -77,9 +77,9 @@ CREATE TABLE `news_topic` (
 	`topic_style` varchar(64)   NOT NULL,
 	PRIMARY KEY (`topic_id`),
 	UNIQUE KEY `topic_alias` (`topic_alias`),
-   KEY `topic_pid` (`topic_pid`),
-   KEY `topic_online` (`topic_online`),
-   KEY `topic_homepage` (`topic_homepage`)
+	KEY `topic_pid` (`topic_pid`),
+	KEY `topic_online` (`topic_online`),
+	KEY `topic_homepage` (`topic_homepage`)
 ) ENGINE=MyISAM;
 
 CREATE TABLE `news_file` (
