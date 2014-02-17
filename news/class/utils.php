@@ -555,23 +555,7 @@ class NewsUtils {
 	 * Build Redirect page
 	 */
 	public function News_UtilityRedirect($url, $time = 3, $message = '') {
-	    global $xoopsModule;
-	    if (preg_match("/[\\0-\\31]|about:|script:/i", $url)) {
-	        if (!preg_match('/^\b(java)?script:([\s]*)history\.go\(-[0-9]*\)([\s]*[;]*[\s]*)$/si', $url)) {
-	            $url = XOOPS_URL;
-	        }
-	    }
-	    // Create Template instance
-	    $tpl = new XoopsTpl();
-	    // Assign Vars
-	    $tpl->assign('url', $url);
-	    $tpl->assign('time', $time);
-	    $tpl->assign('message', $message);
-	    $tpl->assign('ifnotreload', sprintf(_IFNOTRELOAD, $url));
-	    // Call template file
-	    echo $tpl->fetch(XOOPS_ROOT_PATH . '/modules/' . $xoopsModule->getVar('dirname') . '/templates/admin/news_redirect.html');
-	    // Force redirection
-	    header("refresh: " . $time . "; url=" . $url);
+		redirect_header($url, $time, $message);
 	}
 	
 	/**

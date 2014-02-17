@@ -41,7 +41,7 @@ if(!empty($op)) {
         // Get single story as json
 		case 'singlestory':
 			$ret = array();               
-			$story_id = NewsUtils::News_CleanVars ( $_REQUEST, 'storyid', 0, 'int' );
+			$story_id = NewsUtils::News_UtilityCleanVars ( $_REQUEST, 'storyid', 0, 'int' );
         	$obj = $story_handler->get($story_id);
         	$story = $obj->toArray();
         	$json['story_id'] = $story['story_id'];
