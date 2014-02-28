@@ -665,53 +665,9 @@ class NewsStoryHandler extends XoopsPersistableObjectHandler {
 	}
 	
 	/*
-	 *
-	 *
+	 * json output
 	 */
-	public function News_StoryJson($story_infos) {
-		$ret = array ();
-      //$access_topic = NewsPermission::News_PermissionItemId ( 'news_view');
-		//if(in_array($story_infos['story_topic'], $access_topic)) {
-			$criteria = new CriteriaCompo ();
-	      $criteria->add ( new Criteria ( 'story_id', $story_infos['story_id'] , '>=' ));
-	      //$criteria->add ( new Criteria ( 'story_topic', $story_infos['story_topic'] ) );
-			$criteria->add ( new Criteria ( 'story_status', '1' ) );
-	      $criteria->add ( new Criteria ( 'story_publish', 0 , '>' ));
-			$criteria->add ( new Criteria ( 'story_publish', time() , '<=' ));
-			$criteria->add ( new Criteria ( 'story_expire', 0 ));
-			$criteria->add ( new Criteria ( 'story_expire', time() , '>' ) ,'OR');
-	   	$criteria->setSort ( 'story_publish' );
-			$criteria->setOrder ( 'DESC' );
-			$criteria->setLimit ( $story_infos ['story_limit'] );
-			$obj = $this->getObjects ( $criteria, false );
-			if ($obj) {	
-			   foreach ( $obj as $root ) {
-					$tab = array ();
-					$tab = $root->toArray ();
-					$json['story_id'] = $tab['story_id'];
-					$json['story_title'] = $tab['story_title'];
-					$json['story_alias'] = $tab['story_alias'];
-					$json['story_publish'] = $tab['story_publish'];
-					unset($tab);
-					$ret[] = $json;
-				}
-			}
-		//}	
-		return json_encode($ret);
-	} 
-
-
-	/*
-	 *
-	 *
-	 */
-	public function News_StoryJson($story_infos) {
-		/* if($story_infos['story_topic'] != 0){
-			$order = 'ASC';
-		} else {
-			$order = 'DESC';
-		} */
-
+    public function News_StoryJson($story_infos) {
 		$ret = array ();
 		$criteria = new CriteriaCompo ();
 		if($story_infos['story_id'] != 0) {
@@ -732,7 +688,7 @@ class NewsStoryHandler extends XoopsPersistableObjectHandler {
 		$criteria->setLimit ( $story_infos ['story_limit'] );
 		$obj = $this->getObjects ( $criteria, false );
 		if ($obj) {	
-		   foreach ( $obj as $root ) {
+		    foreach ( $obj as $root ) {
 				$tab = array ();
 				$tab = $root->toArray();
 				$json['story_id'] = $tab['story_id'];
@@ -747,8 +703,7 @@ class NewsStoryHandler extends XoopsPersistableObjectHandler {
 			}
 		}
 		return json_encode($ret);
-	} 
-
+	}
 	
 	/**
 	 * Get Content Count for user side
