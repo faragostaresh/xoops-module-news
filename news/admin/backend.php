@@ -325,6 +325,7 @@ switch ($op) {
 			$old = $obj->getVar ( 'story_status' );
 			$story_handler->News_StoryUpdatePost ( $obj->getVar ( 'story_uid' ), $obj->getVar ( 'story_status' ), $story_action = 'status' );
 			$obj->setVar ( 'story_status', ! $old );
+$obj->setVar ( 'story_publish', time () );
 			if ($story_handler->insert ( $obj )) {
 				exit ();
 			}

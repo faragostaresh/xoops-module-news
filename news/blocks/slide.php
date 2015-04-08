@@ -57,7 +57,7 @@ function news_slide_show($options) {
     switch($block['slidetype']) {
     	
 	    case 'scrollable':
-		    $style = '
+		    /*$style = '
 	         .slider {
 					width: '. $block['slidewidth'] .'px;
 					height: '. $block['slideheight']*1.06 .'px;
@@ -79,12 +79,12 @@ function news_slide_show($options) {
 				}
 				.slider .item .itemleft img {
 					width: '. $block['slidewidth']/2 .'px;
-				}';
+				}';*/
 			 $xoTheme->addScript("browse.php?Frameworks/jquery/jquery.js");
-		    $xoTheme->addScript(XOOPS_URL . '/modules/news/js/scrollable/scrollable.js');
-		    $xoTheme->addScript(XOOPS_URL . '/modules/news/js/scrollable/setting.js');
-			 $xoTheme->addStylesheet(XOOPS_URL . '/modules/news/css/scrollable.css');
-			 $xoTheme->addStylesheet( null, array ('rel' => 'stylesheet'), $style );
+		    //$xoTheme->addScript(XOOPS_URL . '/modules/news/js/scrollable/scrollable.js');
+		    //$xoTheme->addScript(XOOPS_URL . '/modules/news/js/scrollable/setting.js');
+			 //$xoTheme->addStylesheet(XOOPS_URL . '/modules/news/css/scrollable.css');
+			 //$xoTheme->addStylesheet( null, array ('rel' => 'stylesheet'), $style );
 		    break;
 		    
 		 case 'sliderkit':

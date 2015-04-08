@@ -67,8 +67,8 @@ if (isset ( $story_topic )) {
 	$topic_alias = $default_alias = $view_topic->getVar ( 'topic_alias' );
 	$topic_id = $default_id = $view_topic->getVar ( 'topic_id' );
 	$topic_img = $view_topic->getVar ( 'topic_img' );
-	$topic_thumb = XOOPS_URL . xoops_getModuleOption ( 'img_dir', 'news' ) .'/thumb/'. $view_topic->getVar ( 'topic_img' );
-	$topic_medium = XOOPS_URL . xoops_getModuleOption ( 'img_dir', 'news' ) .'/medium/'. $view_topic->getVar ( 'topic_img' );
+	$topic_thumb = XOOPS_URL . xoops_getModuleOption ( 'img_dir', 'news' ) .' /thumb/'. $view_topic->getVar ( 'topic_img' );
+	$topic_medium = XOOPS_URL . xoops_getModuleOption ( 'img_dir', 'news' ) .' /medium/'. $view_topic->getVar ( 'topic_img' );
 	$topic_desc = $view_topic->getVar ( 'topic_desc' );
 	
 	$xoopsTpl->assign ( 'topic_desc', $topic_desc );

@@ -30,8 +30,8 @@ define("_NEWS_MD_AUTHOR_ALL","مشاهدة جمیع المشارکات");
 define("_NEWS_MD_AUTHOR_ALL_DESC","مشاهدة جمیع مشارکات بواسطة ");
 define('_NEWS_MD_COM','الرأي');
 define('_NEWS_MD_RELATED','مواضیع ذات صلة');
-define("_NEWS_MD_HOME","Home");
-define("_NEWS_MD_IMPORTANT","Immediate ");
+define("_NEWS_MD_HOME","الصفحة الرئيسية");
+define("_NEWS_MD_IMPORTANT","عاجل ");
 define("_NEWS_MD_SUBTOPICS","SubTopics List");
 // Link
 define('_NEWS_MD_NEXT','التالیة');

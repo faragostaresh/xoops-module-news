@@ -36,8 +36,8 @@ function news_page_show($options) {
     $block['topic_title'] = $topic['topic_title'];
     $block['topic_alias'] = $topic['topic_alias'];
     $block['link'] = NewsUtils::News_UtilityStoryUrl( $block );
-    $block['imageurl'] = XOOPS_URL . xoops_getModuleOption ( 'img_dir', 'news' ) .'/medium/';
-    $block['thumburl'] = XOOPS_URL . xoops_getModuleOption ( 'img_dir', 'news' ) .'/thumb/';
+    $block['imageurl'] = XOOPS_URL . xoops_getModuleOption ( 'img_dir', 'news' ) .' /medium/';
+    $block['thumburl'] = XOOPS_URL . xoops_getModuleOption ( 'img_dir', 'news' ) .' /thumb/';
     $block['width'] = xoops_getModuleOption('imgwidth', 'news');
     $block['float'] = xoops_getModuleOption('imgfloat', 'news');
     // Add styles

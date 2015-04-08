@@ -1,0 +1,5 @@
+[12-Oct-2014 04:26:42 America/New_York] PHP Parse error:  syntax error, unexpected T_VARIABLE in /home/newalliraqnews/public_html/modules/news/ajax.php on line 714
+[12-Oct-2014 04:27:13 America/New_York] PHP Fatal error:  Class 'XoopsObject' not found in /home/newalliraqnews/public_html/modules/news/ajax.php on line 21
+[12-Oct-2014 04:27:20 America/New_York] PHP Fatal error:  Class 'XoopsObject' not found in /home/newalliraqnews/public_html/modules/news/ajax.php on line 21
+[19-Oct-2014 08:37:51 America/New_York] PHP Parse error:  syntax error, unexpected '"' in /home/newalliraqnews/public_html/modules/news/ajax.php on line 77
+[26-Oct-2014 02:57:02 America/New_York] PHP Parse error:  syntax error, unexpected '*' in /home/newalliraqnews/public_html/modules/news/ajax.php on line 114
