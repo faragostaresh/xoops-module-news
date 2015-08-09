@@ -42,45 +42,44 @@ $xoTheme->addStylesheet(XOOPS_URL . '/modules/system/css/admin.css');
 
 // get module configs
 $story_perpage = xoops_getModuleOption('admin_perpage', 'news');
- 
+
 // get user id content 
 if (isset($_REQUEST["user"])) {
-   $story_user = NewsUtils::News_UtilityCleanVars($_REQUEST, 'user', 0, 'int');
+    $story_user = NewsUtils::News_UtilityCleanVars($_REQUEST, 'user', 0, 'int');
 } else {
-   $story_user = null;
+    $story_user = null;
 }
 
 // get limited information
 if (isset($_REQUEST['limit'])) {
-   $story_limit = NewsUtils::News_UtilityCleanVars($_REQUEST, 'limit', 0, 'int');
+    $story_limit = NewsUtils::News_UtilityCleanVars($_REQUEST, 'limit', 0, 'int');
 } else {
-   $story_limit = $story_perpage;
+    $story_limit = $story_perpage;
 }
 
 // get start information
 if (isset($_REQUEST['start'])) {
-   $story_start = NewsUtils::News_UtilityCleanVars($_REQUEST, 'start', 0, 'int');
+    $story_start = NewsUtils::News_UtilityCleanVars($_REQUEST, 'start', 0, 'int');
 } else {
-   $story_start = 0;
+    $story_start = 0;
 }
-   
+
 // get topic information
 if (isset($_REQUEST['topic'])) {
-   $story_topic = NewsUtils::News_UtilityCleanVars($_REQUEST, 'topic', 0, 'int');
-   if ($story_topic) {
-       $topics = $topic_handler->getall($story_topic);
-       $topic_title = NewsTopicHandler::News_TopicFromId ( $story_topic );
-   } else {
-       $topics = $topic_title = _NEWS_AM_STORY_STATICS;
-   }
+    $story_topic = NewsUtils::News_UtilityCleanVars($_REQUEST, 'topic', 0, 'int');
+    if ($story_topic) {
+        $topics = $topic_handler->getall($story_topic);
+        $topic_title = NewsTopicHandler::News_TopicFromId($story_topic);
+    } else {
+        $topics = $topic_title = _NEWS_AM_STORY_STATICS;
+    }
 } else {
-   $story_topic = null;
-   $topic_title = null;
-   $topics = $topic_handler->getall($story_topic);
+    $story_topic = null;
+    $topic_title = null;
+    $topics = $topic_handler->getall($story_topic);
 }
-                     
-switch ($op)
-{
+
+switch ($op) {
     case 'new_content':
         $story_type = NewsUtils::News_UtilityCleanVars($_REQUEST, 'story_type', 'news', 'string');
         $obj = $story_handler->create();
@@ -107,9 +106,9 @@ switch ($op)
             xoops_cp_footer();
         }
         break;
-        
+
     case 'expire':
-    
+
         $story_infos = array(
             'topics' => $topics,
             'story_limit' => $story_limit,
@@ -119,10 +118,10 @@ switch ($op)
             'story_status' => 1,
             'story_static' => false,
         );
-        
+
         $stores = $story_handler->News_StoryExpireList($story_infos);
         $story_numrows = $story_handler->News_StoryExpireCount($story_infos);
-        
+
         if ($story_numrows > $story_limit) {
             $story_pagenav = new XoopsPageNav($story_numrows, $story_limit, $story_start, 'start', 'limit=' . $story_limit . '&op=offline');
             $story_pagenav = $story_pagenav->renderNav(4);
@@ -139,9 +138,9 @@ switch ($op)
 
         // Call template file
         $xoopsTpl->display(XOOPS_ROOT_PATH . '/modules/news/templates/admin/news_article.html');
-        
+
         break;
-         
+
     case 'offline':
 
         $story_infos = array(
@@ -173,9 +172,9 @@ switch ($op)
 
         // Call template file
         $xoopsTpl->display(XOOPS_ROOT_PATH . '/modules/news/templates/admin/news_article.html');
-        
-	    break;
-	    
+
+        break;
+
     default:
 
         $story_infos = array(

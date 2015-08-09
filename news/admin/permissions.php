@@ -28,10 +28,10 @@ include_once XOOPS_ROOT_PATH . '/class/xoopsform/grouppermform.php';
 xoops_cp_header();
 
 // Check admin have access to this page
-$group = $xoopsUser->getGroups ();
-$groups = xoops_getModuleOption ( 'admin_groups', 'news' );
-if (count ( array_intersect ( $group, $groups ) ) <= 0) {
-	redirect_header ( 'index.php', 3, _NOPERM );
+$group = $xoopsUser->getGroups();
+$groups = xoops_getModuleOption('admin_groups', 'news');
+if (count(array_intersect($group, $groups)) <= 0) {
+    redirect_header('index.php', 3, _NOPERM);
 }
 
 // Add module stylesheet
@@ -48,8 +48,7 @@ $xoopsTpl->assign('selected2', $selected[2]);
 
 $module_id = $xoopsModule->getVar('mid');
 
-switch ($permtoset)
-{
+switch ($permtoset) {
     case 1:
         $title_of_form = _NEWS_AM_PERMISSIONS_GLOBAL;
         $perm_name = 'news_ac';
@@ -71,12 +70,12 @@ switch ($permtoset)
         $perm_name = "news_submit";
         $perm_desc = "";
         break;
-        
+
     case 4:
         $title_of_form = _NEWS_AM_PERMISSIONS_APPROVE;
         $perm_name = "news_approve";
         $perm_desc = "";
-        break;    
+        break;
 }
 
 $permform = new XoopsGroupPermForm($title_of_form, $module_id, $perm_name, $perm_desc, "admin/permissions.php");
@@ -87,22 +86,22 @@ if ($permtoset == 1) {
     }
     $xoopsTpl->assign('permform', $permform->render());
 } else {
-    $xt = new XoopsTopic($xoopsDB -> prefix("news_topic"));
+    $xt = new XoopsTopic($xoopsDB->prefix("news_topic"));
     $alltopics =& $xt->getTopicsList();
 
     foreach ($alltopics as $topic_id => $topic) {
         $permform->addItem($topic_id, $topic["title"], $topic["pid"]);
     }
-    
+
     //check if topics exist before rendering the form and redirect, if there are no topics   
     if ($topic_handler->News_TopicCount()) {
         $xoopsTpl->assign('permform', $permform->render());
-	 } else {
-	     NewsUtils::News_UtilityRedirect ( 'topic.php?op=new_topic', 02, _NEWS_AM_MSG_NOPERMSSET );
-	     // Include footer
-	     xoops_cp_footer ();
-	     exit ();
-	 }
+    } else {
+        NewsUtils::News_UtilityRedirect('topic.php?op=new_topic', 02, _NEWS_AM_MSG_NOPERMSSET);
+        // Include footer
+        xoops_cp_footer();
+        exit ();
+    }
 }
 
 $xoopsTpl->assign('navigation', 'permission');

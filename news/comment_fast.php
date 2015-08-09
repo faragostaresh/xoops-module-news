@@ -17,7 +17,7 @@
  * @author      Hossein Azizabadi (AKA Voltan)
  * @version     $Id$
  */
- 
+
 $storyid = isset($_GET['storyid']) ? intval($_GET['storyid']) : 0;
 if ($storyid > 0) {
     $story_handler = xoops_getmodulehandler('story', 'news');

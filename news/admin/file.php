@@ -36,14 +36,13 @@ $xoTheme->addStylesheet(XOOPS_URL . '/modules/news/css/admin.css');
 $xoTheme->addStylesheet(XOOPS_URL . '/modules/system/css/ui/' . xoops_getModuleOption('jquery_theme', 'system') . '/ui.all.css');
 $xoTheme->addStylesheet(XOOPS_URL . '/modules/system/css/admin.css');
 
-switch ($op)
-{
+switch ($op) {
     case 'new_file':
-		$obj = $file_handler->create();
-		$obj->getForm();
-		break;
-		
-	 case 'edit_file':
+        $obj = $file_handler->create();
+        $obj->getForm();
+        break;
+
+    case 'edit_file':
         $file_id = NewsUtils::News_UtilityCleanVars($_REQUEST, 'file_id', 0, 'int');
         if ($file_id > 0) {
             $obj = $file_handler->get($file_id);
@@ -52,7 +51,7 @@ switch ($op)
             NewsUtils::News_UtilityRedirect('file.php', 1, _NEWS_AM_MSG_EDIT_ERROR);
         }
         break;
-     
+
     case 'delete_file':
         $file_id = NewsUtils::News_UtilityCleanVars($_REQUEST, 'file_id', 0, 'int');
         if ($file_id > 0) {
@@ -61,16 +60,16 @@ switch ($op)
             NewsUtils::News_UtilityMessage('backend.php', sprintf(_NEWS_AM_MSG_DELETE, '"' . $file->getVar('file_title') . '"'), $file_id, 'file');
             // Display Admin footer
             xoops_cp_footer();
-        }  
-     
+        }
+
     default:
         $file = array();
         // get module configs
-        
+
         $file['perpage'] = '10';
         $file['order'] = 'DESC';
         $file['sort'] = 'file_id';
-        
+
         // get limited information
         if (isset($_REQUEST['limit'])) {
             $file['limit'] = NewsUtils::News_UtilityCleanVars($_REQUEST, 'limit', 0, 'int');
@@ -84,7 +83,7 @@ switch ($op)
         } else {
             $file['start'] = 0;
         }
-        
+
         // get content
         if (isset($_REQUEST['content'])) {
             $file['content'] = NewsUtils::News_UtilityCleanVars($_REQUEST, 'content', 0, 'int');
@@ -93,9 +92,9 @@ switch ($op)
             $story = $story_handler->getall();
         }
 
-        
-        $files = $file_handler->News_FileAdminList($file , $story);
-        
+
+        $files = $file_handler->News_FileAdminList($file, $story);
+
         $file_numrows = $file_handler->News_FileCount();
 
         if ($file_numrows > $file['limit']) {

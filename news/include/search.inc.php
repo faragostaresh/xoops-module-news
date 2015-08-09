@@ -22,7 +22,8 @@ if (!defined('XOOPS_ROOT_PATH')) {
     die("XOOPS root path not defined");
 }
 
-function news_search($queryarray, $andor, $limit, $offset, $userid) {
+function news_search($queryarray, $andor, $limit, $offset, $userid)
+{
 
     $story_handler = xoops_getmodulehandler('story', 'news');
 

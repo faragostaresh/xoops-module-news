@@ -29,18 +29,18 @@ $xoTheme->addStylesheet(XOOPS_URL . '/modules/news/css/admin.css');
 $xoTheme->addStylesheet(XOOPS_URL . '/modules/system/css/admin.css');
 
 $folder = array(
-	XOOPS_ROOT_PATH . '/uploads/news/', 
-	XOOPS_ROOT_PATH . xoops_getModuleOption ( 'img_dir', 'news' ),
-	XOOPS_ROOT_PATH . xoops_getModuleOption ( 'img_dir', 'news' ) . '/thumb/',
-	XOOPS_ROOT_PATH . xoops_getModuleOption ( 'img_dir', 'news' ) . '/medium/',
-	XOOPS_ROOT_PATH . xoops_getModuleOption ( 'img_dir', 'news' ) . '/original/',
-	XOOPS_ROOT_PATH . xoops_getModuleOption ( 'file_dir', 'news' )
+    XOOPS_ROOT_PATH . '/uploads/news/',
+    XOOPS_ROOT_PATH . xoops_getModuleOption('img_dir', 'news'),
+    XOOPS_ROOT_PATH . xoops_getModuleOption('img_dir', 'news') . '/thumb/',
+    XOOPS_ROOT_PATH . xoops_getModuleOption('img_dir', 'news') . '/medium/',
+    XOOPS_ROOT_PATH . xoops_getModuleOption('img_dir', 'news') . '/original/',
+    XOOPS_ROOT_PATH . xoops_getModuleOption('file_dir', 'news')
 );
 
 $story_infos = array(
-   'story_topic' => null,
+    'story_topic' => null,
 );
-        
+
 $index_admin = new ModuleAdmin();
 $index_admin->addInfoBox(_NEWS_AM_INDEX_ADMENU1);
 $index_admin->addInfoBox(_NEWS_AM_INDEX_ADMENU2);
@@ -49,11 +49,11 @@ $index_admin->addInfoBoxLine(_NEWS_AM_INDEX_ADMENU2, _NEWS_AM_INDEX_CONTENTS, $s
 $index_admin->addInfoBoxLine(_NEWS_AM_INDEX_ADMENU2, _NEWS_AM_INDEX_CONTENTS_OFFLINE, $story_handler->News_StoryOfflineCount($story_infos));
 $index_admin->addInfoBoxLine(_NEWS_AM_INDEX_ADMENU2, _NEWS_AM_INDEX_CONTENTS_EXPIRE, $story_handler->News_StoryExpireCount($story_infos));
 
-foreach (array_keys( $folder) as $i) {
+foreach (array_keys($folder) as $i) {
     $index_admin->addConfigBoxLine($folder[$i], 'folder');
     $index_admin->addConfigBoxLine(array($folder[$i], '777'), 'chmod');
 }
-    
+
 $xoopsTpl->assign('navigation', 'index');
 $xoopsTpl->assign('navtitle', _NEWS_MI_HOME);
 $xoopsTpl->assign('renderindex', $index_admin->renderIndex());

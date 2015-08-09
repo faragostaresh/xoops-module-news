@@ -1,3 +1,3 @@
-$(document).ready(function (){
-  $("#marquee2").marquee({yScroll: "bottom"});
+$(document).ready(function () {
+    $("#marquee2").marquee({yScroll: "bottom"});
 });

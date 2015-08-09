@@ -21,11 +21,12 @@
 require dirname(__FILE__) . '/header.php';
 
 
-function news_page_show($options) {
+function news_page_show($options)
+{
     global $xoTheme, $xoopsTpl, $module_header;
     // Initialize content handler
-    $story_handler = xoops_getmodulehandler ( 'story', 'news' );
-    $topic_handler = xoops_getmodulehandler ( 'topic', 'news' );
+    $story_handler = xoops_getmodulehandler('story', 'news');
+    $topic_handler = xoops_getmodulehandler('topic', 'news');
     // Get the content menu
     $story = $story_handler->get($options[0]);
     // Add block data
@@ -35,9 +36,9 @@ function news_page_show($options) {
     $block['topic_id'] = $topic['topic_id'];
     $block['topic_title'] = $topic['topic_title'];
     $block['topic_alias'] = $topic['topic_alias'];
-    $block['link'] = NewsUtils::News_UtilityStoryUrl( $block );
-    $block['imageurl'] = XOOPS_URL . xoops_getModuleOption ( 'img_dir', 'news' ) .' /medium/';
-    $block['thumburl'] = XOOPS_URL . xoops_getModuleOption ( 'img_dir', 'news' ) .' /thumb/';
+    $block['link'] = NewsUtils::News_UtilityStoryUrl($block);
+    $block['imageurl'] = XOOPS_URL . xoops_getModuleOption('img_dir', 'news') . ' /medium/';
+    $block['thumburl'] = XOOPS_URL . xoops_getModuleOption('img_dir', 'news') . ' /thumb/';
     $block['width'] = xoops_getModuleOption('imgwidth', 'news');
     $block['float'] = xoops_getModuleOption('imgfloat', 'news');
     // Add styles
@@ -46,7 +47,8 @@ function news_page_show($options) {
     return $block;
 }
 
-function news_page_edit($options) {
+function news_page_edit($options)
+{
     require_once XOOPS_ROOT_PATH . '/modules/news/class/registry.php';
     $registry =& ForRegistry::getInstance();
     // Initialize content handler

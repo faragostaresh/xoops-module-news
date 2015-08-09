@@ -72,7 +72,7 @@ if (!$xoopsTpl->is_cached('db:news_rss.html')) {
         $story_topic = NewsUtils::News_UtilityCleanVars($_REQUEST, 'topic', 0, 'int');
         $topics = '';
     } else {
-        $topic_handler = xoops_getmodulehandler ( 'topic', 'news' );
+        $topic_handler = xoops_getmodulehandler('topic', 'news');
         $topics = $topic_handler->getall($story_topic);
     }
 
@@ -89,7 +89,7 @@ if (!$xoopsTpl->is_cached('db:news_rss.html')) {
     );
 
     $story_handler = xoops_getmodulehandler('story', 'news');
-    $stores = $story_handler->News_StoryList( $story_infos);
+    $stores = $story_handler->News_StoryList($story_infos);
 
     $xoopsTpl->assign('contents', $stores);
 }

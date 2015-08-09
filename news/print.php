@@ -21,13 +21,13 @@
 // Include module header
 require dirname(__FILE__) . '/header.php';
 
-if(isset($_REQUEST['storyid'])) {
-	$story_id = NewsUtils::News_UtilityCleanVars ( $_REQUEST, 'storyid', 0, 'int' );
+if (isset($_REQUEST['storyid'])) {
+    $story_id = NewsUtils::News_UtilityCleanVars($_REQUEST, 'storyid', 0, 'int');
 } else {
-	$story_alias = NewsUtils::News_UtilityCleanVars ( $_REQUEST, 'story', 0, 'string' );
-	if($story_alias) {
-		$story_id = $story_handler->News_StoryGetId($story_alias);
-	}
+    $story_alias = NewsUtils::News_UtilityCleanVars($_REQUEST, 'story', 0, 'string');
+    if ($story_alias) {
+        $story_id = $story_handler->News_StoryGetId($story_alias);
+    }
 }
 
 // Initialize template
@@ -92,7 +92,7 @@ $xoopsTpl->assign('meta_keywords', $obj->getVar('story_words'));
 $xoopsTpl->assign('meta_description', $obj->getVar('story_desc'));
 
 // Set xoops page title
-$xoopsTpl->assign('xoops_pagetitle', $page['title'] );
+$xoopsTpl->assign('xoops_pagetitle', $page['title']);
 
 // Set local style
 if (file_exists(XOOPS_ROOT_PATH . '/language/' . $GLOBALS['xoopsConfig']['language'] . '/style.css')) {

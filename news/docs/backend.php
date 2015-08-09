@@ -14,7 +14,7 @@
  * @since           2.0.0
  * @version         $Id$
  */
- 
+
 include dirname(__FILE__) . DIRECTORY_SEPARATOR . 'mainfile.php';
 include XOOPS_ROOT_PATH . '/modules/news/rss.php';
 

@@ -17,16 +17,17 @@
  * @author      Hossein Azizabadi (AKA Voltan)
  * @version     $Id$
  */
- 
-function news_list_show($options) {
 
-    $story_handler = xoops_getmodulehandler ( 'story', 'news' );
-    $topic_handler = xoops_getmodulehandler ( 'topic', 'news' );
+function news_list_show($options)
+{
+
+    $story_handler = xoops_getmodulehandler('story', 'news');
+    $topic_handler = xoops_getmodulehandler('topic', 'news');
     $module_handler = xoops_gethandler('module');
-    
-     require_once XOOPS_ROOT_PATH . '/modules/news/include/functions.php';
-     require_once XOOPS_ROOT_PATH . '/modules/news/class/perm.php';
-     require_once XOOPS_ROOT_PATH . '/modules/news/class/utils.php';
+
+    require_once XOOPS_ROOT_PATH . '/modules/news/include/functions.php';
+    require_once XOOPS_ROOT_PATH . '/modules/news/class/perm.php';
+    require_once XOOPS_ROOT_PATH . '/modules/news/class/utils.php';
 
     global $xoTheme;
 
@@ -45,7 +46,7 @@ function news_list_show($options) {
     $block['morelink'] = $options[12];
     $day = $options[13];
     $topiclimit = $options[14];
-    
+
     array_shift($options);
     array_shift($options);
     array_shift($options);
@@ -63,40 +64,40 @@ function news_list_show($options) {
     array_shift($options);
 
     // Set story publish
-    if($story_infos['story_sort'] == 'story_hits') {
-        if($day) {
+    if ($story_infos['story_sort'] == 'story_hits') {
+        if ($day) {
             $day = 86400 * $day;
             $story_infos['story_publish'] = intval(time() - $day);
         } else {
             $story_infos['story_publish'] = 0;
-        }  
+        }
     } else {
         $story_infos['story_publish'] = 0;
-    }       
-    
+    }
+
     // Set topic limit
-    if($topiclimit) {
+    if ($topiclimit) {
         $topics = array();
-        $topics[] = NewsUtils::News_UtilityCleanVars ( $_GET, 'storytopic', 0, 'int' );
+        $topics[] = NewsUtils::News_UtilityCleanVars($_GET, 'storytopic', 0, 'int');
     } else {
         $topics = $options;
-    }       
+    }
 
-    $story_infos ['topics'] = $topic_handler->getall ();
-    $stores = $story_handler->News_StoryBlockList($story_infos ,$topics);
-    
-    if($show == 'spotlight' || $show == 'spotlight2') {
+    $story_infos ['topics'] = $topic_handler->getall();
+    $stores = $story_handler->News_StoryBlockList($story_infos, $topics);
+
+    if ($show == 'spotlight' || $show == 'spotlight2') {
         $id = $story_handler->News_StorySpotlightId($stores);
         $block['spotlightid'] = $id['spotlightid'];
-       $block['subspotlightid1'] = $id['subspotlightid1'];
-       $block['subspotlightid2'] = $id['subspotlightid2'];
+        $block['subspotlightid1'] = $id['subspotlightid1'];
+        $block['subspotlightid2'] = $id['subspotlightid2'];
     }
-    
+
     // Add block data
-     $block['show'] = $show;
+    $block['show'] = $show;
     $block['img'] = $showimg;
-    $block['imageurl'] = XOOPS_URL . xoops_getModuleOption ( 'img_dir', 'news' ) . '/medium/';
-    $block['thumburl'] = XOOPS_URL . xoops_getModuleOption ( 'img_dir', 'news' ) . '/thumb/';
+    $block['imageurl'] = XOOPS_URL . xoops_getModuleOption('img_dir', 'news') . '/medium/';
+    $block['thumburl'] = XOOPS_URL . xoops_getModuleOption('img_dir', 'news') . '/thumb/';
     $block['description'] = $showdescription;
     $block['date'] = $showdate;
     $block['contents'] = $stores;
@@ -110,7 +111,8 @@ function news_list_show($options) {
 
 }
 
-function news_list_edit($options) {
+function news_list_edit($options)
+{
 
     //appel de la class
     $story_handler = xoops_getmodulehandler('story', 'news');
@@ -124,7 +126,7 @@ function news_list_edit($options) {
 
     //$form = _NEWS_MB_DISP . "&nbsp;\n";
     $form = "<input type=\"hidden\" name=\"options[]\" value=\"" . $options[0] . "\" />";
-    
+
     $show_select = new XoopsFormSelect(_NEWS_MI_SHOWTYPE, 'options[]', $options[1]);
     $show_select->addOption("news", _NEWS_MI_SHOWTYPE_1);
     //$show_select->addOption("table", _NEWS_MI_SHOWTYPE_2);
@@ -182,13 +184,13 @@ function news_list_edit($options) {
     $float_select->addOption("left", _NEWS_MI_IMAGE_LEFT);
     $float_select->addOption("right", _NEWS_MI_IMAGE_RIGHT);
     $form .= _NEWS_MI_IMAGE_FLOAT . " : " . $float_select->render() . '<br />';
-    
+
     $order_select = new XoopsFormSelect(_NEWS_MI_SHOWORDER, 'options[]', $options[10]);
     $order_select->addOption("DESC", _NEWS_MI_DESC);
     $order_select->addOption("ASC", _NEWS_MI_ASC);
     $form .= _NEWS_MI_SHOWORDER . " : " . $order_select->render() . '<br />';
-        
-     if ($options[11] == false) {
+
+    if ($options[11] == false) {
         $checked_yes = '';
         $checked_no = 'checked="checked"';
     } else {
@@ -197,10 +199,10 @@ function news_list_edit($options) {
     }
     $form .= _NEWS_MB_SHOE_MORELINK . " : <input name=\"options[11]\" value=\"1\" type=\"radio\" " . $checked_yes . "/>" . _YES . "&nbsp;\n";
     $form .= "<input name=\"options[11]\" value=\"0\" type=\"radio\" " . $checked_no . "/>" . _NO . "<br />\n";
-        
+
     $form .= _NEWS_MB_MORELINK . " : <input name=\"options[12]\" size=\"50\" maxlength=\"255\" value=\"" . $options[12] . "\" type=\"text\" /><br />\n";
     $form .= _NEWS_MB_HITINDAY1 . " <input name=\"options[13]\" size=\"5\" maxlength=\"255\" value=\"" . $options[13] . "\" type=\"text\" />" . _NEWS_MB_HITINDAY2 . "<br />\n";
-        
+
     if ($options[14] == false) {
         $checked_yes = '';
         $checked_no = 'checked="checked"';
@@ -210,7 +212,7 @@ function news_list_edit($options) {
     }
     $form .= _NEWS_MB_TOPICLIMIT . " : <input name=\"options[14]\" value=\"1\" type=\"radio\" " . $checked_yes . "/>" . _YES . "&nbsp;\n";
     $form .= "<input name=\"options[14]\" value=\"0\" type=\"radio\" " . $checked_no . "/>" . _NO . "<br />\n";
-        
+
     array_shift($options);
     array_shift($options);
     array_shift($options);

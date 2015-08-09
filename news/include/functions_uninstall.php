@@ -15,14 +15,15 @@
  * @copyright   The XOOPS Project http://sourceforge.net/projects/xoops/
  * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
  * @author      Andricq Nicolas (AKA MusS)
- * @author      Hossein Azizabadi (AKA Voltan) 
+ * @author      Hossein Azizabadi (AKA Voltan)
  * @version     $Id$
  */
 
-function xoops_module_uninstall_news($module) {
+function xoops_module_uninstall_news($module)
+{
     $db =& $GLOBALS["xoopsDB"];
 
-    $created_tables = array(0 => 'news_story', 1 => 'news_topic' , 2 => 'news_file');
+    $created_tables = array(0 => 'news_story', 1 => 'news_topic', 2 => 'news_file');
 
     foreach ($created_tables as $ct) {
         $db->query("DROP TABLE " . $db->prefix($ct));

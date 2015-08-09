@@ -39,8 +39,7 @@ $xoTheme->addStylesheet(XOOPS_URL . '/modules/news/css/admin.css');
 $xoTheme->addStylesheet(XOOPS_URL . '/modules/system/css/ui/' . xoops_getModuleOption('jquery_theme', 'system') . '/ui.all.css');
 $xoTheme->addStylesheet(XOOPS_URL . '/modules/system/css/admin.css');
 
-switch ($op)
-{
+switch ($op) {
     case 'new_topic':
         $obj = $topic_handler->create();
         $obj->getForm();
@@ -65,8 +64,8 @@ switch ($op)
             // Display Admin footer
             xoops_cp_footer();
         }
-        
-            case 'order':
+
+    case 'order':
         if (isset($_POST['mod'])) {
             $i = 1;
             foreach ($_POST['mod'] as $order) {
@@ -82,8 +81,8 @@ switch ($op)
         }
         exit;
         break;
-        
-        
+
+
     default:
 
         // get module configs
@@ -103,7 +102,7 @@ switch ($op)
             $topic_start = 0;
         }
 
-        $topics = $topic_handler->News_TopicAdminList( $topic_limit, $topic_start);
+        $topics = $topic_handler->News_TopicAdminList($topic_limit, $topic_start);
         $topic_numrows = $topic_handler->News_TopicCount();
 
         if ($topic_numrows > $topic_limit) {

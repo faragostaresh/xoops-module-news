@@ -16,53 +16,53 @@
  * @version    $Id $
  **/
 .endline {
-	width: 100%;
-	clear: both;
+    width: 100%;
+    clear: both;
 }
 
 .itemBlock h2 {
-	padding: 0;
-	margin: 0;
+    padding: 0;
+    margin: 0;
 }
 
-.itemBlock h3,li h3 {
-	padding: 0;
-	margin: 0;
-	display: inline;
+.itemBlock h3, li h3 {
+    padding: 0;
+    margin: 0;
+    display: inline;
 }
 
 .itemTitle a {
-	font-size: inherit;
+    font-size: inherit;
 }
 
-#xo-canvas-content ul li,.blockContent ul li {
-	list-style-position: outside;
-	margin: 0 0 5px 15px;
+#xo-canvas-content ul li, .blockContent ul li {
+    list-style-position: outside;
+    margin: 0 0 5px 15px;
 }
 
-#xo-canvas-content ul.itemList,ul.itemList {
-	list-style: none outside none;
-	margin: 0;
-	padding: 0;
+#xo-canvas-content ul.itemList, ul.itemList {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
 }
 
-#xo-canvas-content ul.itemList li,ul.itemList li {
-	margin: 0px 0 10px 2px;
-	padding: 0;
+#xo-canvas-content ul.itemList li, ul.itemList li {
+    margin: 0px 0 10px 2px;
+    padding: 0;
 }
 
 li .itemText {
-	margin: 0;
+    margin: 0;
 }
 
 .itemHead {
-	padding: 5px 3px 6px 7px;
+    padding: 5px 3px 6px 7px;
 }
 
 .itemInfo {
-	padding: 4px 5px;
+    padding: 4px 5px;
 }
 
 .itemBody {
-	padding: 3px 4px;
+    padding: 3px 4px;
 }

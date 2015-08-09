@@ -19,13 +19,15 @@
  */
 // comment callback functions
 
-function news_com_update($story_id, $story_comments) {
+function news_com_update($story_id, $story_comments)
+{
     $db =& Database::getInstance();
     $sql = 'UPDATE ' . $db->prefix('news_story') . ' SET story_comments = ' . $story_comments . ' WHERE story_id = ' . $story_id;
     $db->query($sql);
 }
 
-function news_com_approve() {
+function news_com_approve()
+{
     // not yet
 }
 

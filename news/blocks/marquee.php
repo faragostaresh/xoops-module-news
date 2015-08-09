@@ -16,17 +16,18 @@
  * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
  * @author      Hossein Azizabadi (AKA Voltan)
  * @version     $Id$
- */ 
+ */
 
-function news_marquee_show($options) {
-	
-    $story_handler = xoops_getmodulehandler ( 'story', 'news' );
-    $topic_handler = xoops_getmodulehandler ( 'topic', 'news' );
+function news_marquee_show($options)
+{
+
+    $story_handler = xoops_getmodulehandler('story', 'news');
+    $topic_handler = xoops_getmodulehandler('topic', 'news');
     $module_handler = xoops_gethandler('module');
-    
+
     require_once XOOPS_ROOT_PATH . '/modules/news/include/functions.php';
-	 require_once XOOPS_ROOT_PATH . '/modules/news/class/perm.php';
-	 require_once XOOPS_ROOT_PATH . '/modules/news/class/utils.php';
+    require_once XOOPS_ROOT_PATH . '/modules/news/class/perm.php';
+    require_once XOOPS_ROOT_PATH . '/modules/news/class/utils.php';
 
     global $xoTheme;
 
@@ -41,20 +42,21 @@ function news_marquee_show($options) {
     array_shift($options);
     array_shift($options);
 
-    $story_infos['topics'] = $topic_handler->getall ();
-    $block['marquee'] = $story_handler->News_StoryMarquee($story_infos ,$options);
-    
+    $story_infos['topics'] = $topic_handler->getall();
+    $block['marquee'] = $story_handler->News_StoryMarquee($story_infos, $options);
+
     $xoTheme->addScript("browse.php?Frameworks/jquery/jquery.js");
-	 $xoTheme->addScript(XOOPS_URL . '/modules/news/js/marquee/marquee.js');
-	 $xoTheme->addScript(XOOPS_URL . '/modules/news/js/marquee/setting.js');
-	 $xoTheme->addStylesheet(XOOPS_URL . '/modules/news/css/marquee.css');
-		    
+    $xoTheme->addScript(XOOPS_URL . '/modules/news/js/marquee/marquee.js');
+    $xoTheme->addScript(XOOPS_URL . '/modules/news/js/marquee/setting.js');
+    $xoTheme->addStylesheet(XOOPS_URL . '/modules/news/css/marquee.css');
+
     return $block;
 }
 
-function news_marquee_edit($options) {
-	
-	 //appel de la class
+function news_marquee_edit($options)
+{
+
+    //appel de la class
     $story_handler = xoops_getmodulehandler('story', 'news');
     $topic_handler = xoops_getmodulehandler('topic', 'news');
 
@@ -65,9 +67,9 @@ function news_marquee_edit($options) {
 
     $form = "<input type=\"hidden\" name=\"options[]\" value=\"" . $options[0] . "\" />";
     $form .= _NEWS_MB_NUMBER . " : <input type=\"text\" name=\"options[1]\" size=\"5\" maxlength=\"10\" value=\"" . $options[1] . "\" type=\"text\" /><br />\n";
-	 $form .= _NEWS_MB_CHARS . ":<input type=\"text\" name=\"options[2]\" size=\"5\" maxlength=\"10\" value=\"" . $options[2] . "\" /><br />";
-	
-	 if ($options[3] == false) {
+    $form .= _NEWS_MB_CHARS . ":<input type=\"text\" name=\"options[2]\" size=\"5\" maxlength=\"10\" value=\"" . $options[2] . "\" /><br />";
+
+    if ($options[3] == false) {
         $checked_yes = '';
         $checked_no = 'checked="checked"';
     } else {
@@ -76,13 +78,13 @@ function news_marquee_edit($options) {
     }
     $form .= _NEWS_MB_DATE . " : <input name=\"options[3]\" value=\"1\" type=\"radio\" " . $checked_yes . "/>" . _YES . "&nbsp;\n";
     $form .= "<input name=\"options[3]\" value=\"0\" type=\"radio\" " . $checked_no . "/>" . _NO . "<br />\n";
-    
-    array_shift($options);
-	 array_shift($options);
+
     array_shift($options);
     array_shift($options);
-    
-    $form .=  _NEWS_MB_TOPICDISPLAY . "<br /><select name=\"options[]\" multiple=\"multiple\" size=\"5\">\n";
+    array_shift($options);
+    array_shift($options);
+
+    $form .= _NEWS_MB_TOPICDISPLAY . "<br /><select name=\"options[]\" multiple=\"multiple\" size=\"5\">\n";
     $form .= "<option value=\"0\" " . (array_search(0, $options) === false ? '' : 'selected="selected"') . ">" . _NEWS_MB_ALLMENUS . "</option>\n";
     foreach (array_keys($topic_arr) as $i) {
         $form .= "<option value=\"" . $topic_arr[$i]->getVar('topic_id') . "\" " . (array_search($topic_arr[$i]->getVar('topic_id'), $options) === false ? '' : 'selected="selected"') . ">" . $topic_arr[$i]->getVar('topic_title') . "</option>\n";
@@ -90,4 +92,5 @@ function news_marquee_edit($options) {
     $form .= "</select>\n";
     return $form;
 }
+
 ?>
