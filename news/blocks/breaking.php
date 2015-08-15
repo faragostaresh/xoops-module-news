@@ -10,6 +10,7 @@ function news_breaking_show($options) {
     $story = $story_handler->News_StoryBreaking();
     $block = array();
     $block['contents'] = $story;
+    $block['count'] = count($story);
     return $block;
 }
 
