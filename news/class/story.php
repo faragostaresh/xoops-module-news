@@ -1343,6 +1343,9 @@ class NewsStoryHandler extends XoopsPersistableObjectHandler
         $criteria = new CriteriaCompo ();
         $criteria->add(new Criteria ('story_status', '1'));
         $criteria->add(new Criteria ('story_default', '1'));
+
+        $criteria->add(new Criteria ('story_publish', (time() - (60 * 16)), '>='));
+
         $criteria->setSort('story_publish');
         $criteria->setOrder('DESC');
         $criteria->setLimit(1);
