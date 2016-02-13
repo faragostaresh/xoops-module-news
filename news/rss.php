@@ -68,12 +68,13 @@ if (!$xoopsTpl->is_cached('db:news_rss.html')) {
     $xoopsTpl->assign('image_width', $width);
     $xoopsTpl->assign('image_height', $height);
 
+    $topic_handler = xoops_getmodulehandler('topic', 'news');
     if (isset($_REQUEST["topic"])) {
         $story_topic = NewsUtils::News_UtilityCleanVars($_REQUEST, 'topic', 0, 'int');
-        $topics = '';
+        $topics = $story_handler->get($story_topic);
     } else {
-        $topic_handler = xoops_getmodulehandler('topic', 'news');
-        $topics = $topic_handler->getall($story_topic);
+        $story_topic = null;
+        $topics = $topic_handler->getall();
     }
 
     $story_infos = array(
