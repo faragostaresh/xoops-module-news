@@ -48,6 +48,9 @@ if (!empty($op)) {
             $obj = $story_handler->get($story_id);
             $story = $obj->toArray();
 
+            // Update content hits
+            $story_handler->News_StoryUpdateHits($story_id);
+
             $json['story_id'] = $story['story_id'];
             $json['story_alias'] = $story['story_alias'];
             $json['story_publish'] = $story['story_publish'];
@@ -107,6 +110,9 @@ if (!empty($op)) {
             $story_id = NewsUtils::News_UtilityCleanVars($_REQUEST, 'storyid', 0, 'int');
             $obj = $story_handler->get($story_id);
             $story = $obj->toArray();
+
+            // Update content hits
+            $story_handler->News_StoryUpdateHits($story_id);
 
             $json['story_id'] = $story['story_id'];
             $json['story_alias'] = $story['story_alias'];
