@@ -194,4 +194,5 @@ define('_NEWS_AM_ABOUT_AUTHOR_INFO', 'معلومات المنتج');
 define('_NEWS_AM_ABOUT_AUTHOR_NAME', 'الإسم:');
 define('_NEWS_AM_ABOUT_CHANGELOG', 'قائمة التعدیلات');
 
+define('_NEWS_AM_STORY_PUSH', 'Push');
 ?>

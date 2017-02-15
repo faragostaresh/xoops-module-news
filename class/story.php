@@ -1368,6 +1368,9 @@ class NewsStoryHandler extends XoopsPersistableObjectHandler
         $sql = 'UPDATE ' . $this->db->prefix('news_story') . ' SET story_rating = ' . intval($rating) . ', story_votes = ' . intval($votes) . ' WHERE story_id = ' . intval($id);
         return $this->db->queryF($sql);
     }
+
+    public function News_StoryPushNotification()
+    {}
 }
 
 ?>

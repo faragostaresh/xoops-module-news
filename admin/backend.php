@@ -451,6 +451,54 @@ switch ($op) {
         xoops_cp_footer();
         exit ();
         break;
+
+    case 'push':
+        $story_id = NewsUtils::News_UtilityCleanVars($_REQUEST, 'story_id', 0, 'int');
+        if ($story_id > 0) {
+            $obj = $story_handler->get($story_id);
+            $story = $obj->toArray();
+
+
+            $data = array(
+                'id'    => $story['story_id'],
+                'title' => $story['story_title'],
+                'body'  => $story['story_short'],
+            );
+
+            $server_key = '';
+
+            //FCM api URL
+            $url = 'https://fcm.googleapis.com/fcm/send';
+            $fields = array();
+            $fields['data'] = $data;
+            $fields['to'] = '/topics/ain';
+            $fields['priority'] = 'high';
+
+            //header with content_type api key
+            $headers = array(
+                'Content-Type:application/json',
+                'Authorization:key=' . strlen($server_key)
+            );
+
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
+            $result = curl_exec($ch);
+
+            curl_close($ch);
+
+            $file = '/var/www/html/local/x2log.txt';
+            $current = json_encode($result);
+            file_put_contents($file, $current);
+
+            exit ();
+        }
+        break;
 }
 
 // Redirect page

@@ -193,4 +193,6 @@ define('_NEWS_AM_ABOUT_AUTHOR_INFO', 'Author Info');
 define('_NEWS_AM_ABOUT_AUTHOR_NAME', 'Name:');
 define('_NEWS_AM_ABOUT_CHANGELOG', 'Changelog');
 
+define('_NEWS_AM_STORY_PUSH', 'Push');
+
 ?>

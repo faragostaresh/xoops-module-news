@@ -75,6 +75,16 @@ function news_setImportant(data, img, file) {
         });
 }
 
+function news_setPush(data, img, file) {
+    // Post request
+    $.post(file, data,
+        function (reponse, textStatus) {
+            if (textStatus == 'success') {
+                alert('Success send !');
+            }
+        });
+}
+
 function news_setAlias() {
     var text = $(this).val().toLowerCase();
     //alert($(this).id);

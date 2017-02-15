@@ -46,6 +46,7 @@
     <th><{$smarty.const._NEWS_AM_STORY_ACTIF}></th>
     <th><{$smarty.const._NEWS_AM_STORY_DEFAULT}></th>
     <th><{$smarty.const._NEWS_AM_STORY_IMPORTANT}></th>
+    <th><{$smarty.const._NEWS_AM_STORY_PUSH}></th>
     <th><{$smarty.const._NEWS_AM_STORY_ACTION}></th>
     </thead>
     <tbody class="xo-content">
@@ -85,6 +86,12 @@
             <img class="cursorpointer" id="important<{$story.story_id}>"
                  onclick="news_setImportant( { op: 'important', story_id: <{$story.story_id}> }, 'important<{$story.story_id}>', 'backend.php' )"
                  src="<{if $story.story_important}>../images/icons/ok.png<{else}>../images/icons/cancel.png<{/if}>"
+                 alt=""/>
+        </td>
+        <td class="txtcenter width5">
+            <img class="cursorpointer" id="push<{$story.story_id}>"
+                 onclick="news_setPush( { op: 'push', story_id: <{$story.story_id}> }, 'push<{$story.story_id}>', 'backend.php' )"
+                 src="../images/icons/idea.png"
                  alt=""/>
         </td>
         <td class="txtcenter xo-actions width15">

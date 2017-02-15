@@ -193,4 +193,5 @@ define('_NEWS_AM_ABOUT_AUTHOR_INFO', 'اطلاعات سازنده');
 define('_NEWS_AM_ABOUT_AUTHOR_NAME', 'نام:');
 define('_NEWS_AM_ABOUT_CHANGELOG', 'فهرست تغییرات');
 
+define('_NEWS_AM_STORY_PUSH', 'Push');
 ?>
