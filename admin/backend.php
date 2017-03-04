@@ -470,7 +470,7 @@ switch ($op) {
             //FCM api URL
             $url = 'https://fcm.googleapis.com/fcm/send';
             $fields = array();
-            $fields['data'] = $data;
+            $fields['notification'] = $data;
             $fields['to'] = '/topics/ain';
             $fields['priority'] = 'high';
 
@@ -492,9 +492,9 @@ switch ($op) {
 
             curl_close($ch);
 
-            $file = '/var/www/html/local/x2log.txt';
-            $current = json_encode($result);
-            file_put_contents($file, $current);
+            //$file = '/var/www/html/local/x2log.txt';
+            //$current = json_encode($result);
+            //file_put_contents($file, $current);
 
             exit ();
         }
