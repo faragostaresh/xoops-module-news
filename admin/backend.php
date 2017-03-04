@@ -459,25 +459,27 @@ switch ($op) {
             $story = $obj->toArray();
 
 
-            $data = array(
+            $notification = array(
                 'id'    => $story['story_id'],
                 'title' => $story['story_title'],
-                'body'  => $story['story_short'],
+                'body'  => strip_tags($story['story_short']),
             );
 
-            $server_key = '';
+            $target = '/topics/ain';
 
             //FCM api URL
             $url = 'https://fcm.googleapis.com/fcm/send';
+            //api_key available in Firebase Console -> Project Settings -> CLOUD MESSAGING -> Server key
+            $server_key = '';
+
             $fields = array();
-            $fields['notification'] = $data;
+            $fields['notification'] = $notification;
             $fields['to'] = '/topics/ain';
             $fields['priority'] = 'high';
-
-            //header with content_type api key
+            $fields['sound'] = 'default';
             $headers = array(
                 'Content-Type:application/json',
-                'Authorization:key=' . strlen($server_key)
+                'Authorization:key=' . $server_key
             );
 
             $ch = curl_init();
@@ -489,12 +491,7 @@ switch ($op) {
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($fields));
             $result = curl_exec($ch);
-
             curl_close($ch);
-
-            //$file = '/var/www/html/local/x2log.txt';
-            //$current = json_encode($result);
-            //file_put_contents($file, $current);
 
             exit ();
         }
