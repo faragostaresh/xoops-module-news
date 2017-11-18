@@ -25,7 +25,7 @@ if (!defined("XOOPS_ROOT_PATH")) {
 class NewsPermission
 {
 
-    public function getHandler()
+    public static function getHandler()
     {
         static $permHandler;
         if (!isset ($permHandler)) {
@@ -34,7 +34,7 @@ class NewsPermission
         return $permHandler;
     }
 
-    public function News_PermissionUserGroup($user)
+    public static function NewsPermissionUserGroup($user)
     {
         if (is_a($user, 'XoopsUser')) {
             return $user->getGroups();
@@ -43,26 +43,26 @@ class NewsPermission
         }
     }
 
-    public function News_PermissionAuthorizedTopic($user, $perm)
+    public static function NewsPermissionAuthorizedTopic($user, $perm)
     {
         static $authorizedCat;
         $userId = ($user) ? $user->getVar('uid') : 0;
         if (!isset ($authorizedCat [$perm] [$userId])) {
-            $groupPermHandler = &xoops_gethandler('groupperm');
-            $moduleHandler = &xoops_gethandler('module');
+            $groupPermHandler = xoops_gethandler('groupperm');
+            $moduleHandler = xoops_gethandler('module');
             $module = $moduleHandler->getByDirname('news');
-            $authorizedCat [$perm] [$userId] = $groupPermHandler->getItemIds($perm, $this->News_PermissionUserGroup($user), $module->getVar("mid"));
+            $authorizedCat [$perm] [$userId] = $groupPermHandler->getItemIds($perm, self::NewsPermissionUserGroup($user), $module->getVar("mid"));
         }
         return $authorizedCat [$perm] [$userId];
     }
 
-    public function News_PermissionIsAllowed($user, $perm, $topic_id)
+    public static function NewsPermissionIsAllowed($user, $perm, $topic_id)
     {
-        $autorizedCat = $this->News_PermissionAuthorizedTopic($user, $perm);
+        $autorizedCat = self::NewsPermissionAuthorizedTopic($user, $perm);
         return in_array($topic_id, $autorizedCat);
     }
 
-    public function News_PermissionSet($gperm_name, $groups_action, $id, $new)
+    public static function NewsPermissionSet($gperm_name, $groups_action, $id, $new)
     {
         global $xoopsModule;
         $gperm_handler = xoops_gethandler('groupperm');
@@ -82,7 +82,7 @@ class NewsPermission
 
     }
 
-    public function News_PermissionItemId($permtype)
+    public static function NewsPermissionItemId($permtype)
     {
         global $xoopsUser;
         $moduleHandler = xoops_gethandler('module');

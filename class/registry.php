@@ -18,11 +18,11 @@ class ForRegistry
     function __construct($dirname = '')
     {
         $this->_dirname = $dirname;
-        $this->_entries = array();
-        $this->_locks = array();
+        $this->_entries = [];
+        $this->_locks = [];
     }
 
-    function &getInstance()
+    function getInstance()
     {
         static $instance = false;
         if (!$instance) {
@@ -79,8 +79,8 @@ class ForRegistry
 
     function unsetAll()
     {
-        $this->_entries = array();
-        $this->_locks = array();
+        $this->_entries = [];
+        $this->_locks = [];
     }
 }
 

@@ -1,4 +1,4 @@
-<{includeq file="$xoops_rootpath/modules/news/templates/admin/news_header.html"}>
+<{includeq file="$xoops_rootpath/modules/news/templates/admin/news_header.tpl"}>
 
 <table id="xo-file-sort" class="outer" cellspacing="1" width="100%">
     <thead>

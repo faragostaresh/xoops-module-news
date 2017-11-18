@@ -75,7 +75,8 @@
     $.Marquee = function (marquee, options) {
         options = $.extend({}, $.Marquee.defaults, options);
 
-        var self = this, $marquee = $(marquee), $lis = $marquee.find("> li"), current = -1, hard_paused = false, paused = false, loop_count = 0;
+        var self = this, $marquee = $(marquee), $lis = $marquee.find("> li"), current = -1, hard_paused = false,
+            paused = false, loop_count = 0;
 
         // store a reference to this marquee
         $.data($marquee[0], "marquee", self);

@@ -16,6 +16,6 @@
  */
 
 include dirname(__FILE__) . DIRECTORY_SEPARATOR . 'mainfile.php';
-include XOOPS_ROOT_PATH . '/modules/news/rss.php';
+require_once XOOPS_ROOT_PATH . '/modules/news/rss.php';
 
 ?>

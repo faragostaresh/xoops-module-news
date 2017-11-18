@@ -37,36 +37,36 @@ function xoops_module_update_news($module, $version)
     // start update to version 1.83
     if ($version < 183) {
         // story_link
-        if (NewsUtils::News_UtilityFieldExists('story_link', $db->prefix('news_story'))) {
-            NewsUtils::News_UtilityDropField('story_link', $db->prefix('news_story'));
+        if (NewsUtils::NewsUtilityFieldExists('story_link', $db->prefix('news_story'))) {
+            NewsUtils::NewsUtilityDropField('story_link', $db->prefix('news_story'));
         }
         // story_order
-        if (NewsUtils::News_UtilityFieldExists('story_order', $db->prefix('news_story'))) {
-            NewsUtils::News_UtilityDropField('story_order', $db->prefix('news_story'));
+        if (NewsUtils::NewsUtilityFieldExists('story_order', $db->prefix('news_story'))) {
+            NewsUtils::NewsUtilityDropField('story_order', $db->prefix('news_story'));
         }
         // story_groups
-        if (NewsUtils::News_UtilityFieldExists('story_groups', $db->prefix('news_story'))) {
-            NewsUtils::News_UtilityDropField('story_groups', $db->prefix('news_story'));
+        if (NewsUtils::NewsUtilityFieldExists('story_groups', $db->prefix('news_story'))) {
+            NewsUtils::NewsUtilityDropField('story_groups', $db->prefix('news_story'));
         }
         // story_next
-        if (NewsUtils::News_UtilityFieldExists('story_next', $db->prefix('news_story'))) {
-            NewsUtils::News_UtilityDropField('story_next', $db->prefix('news_story'));
+        if (NewsUtils::NewsUtilityFieldExists('story_next', $db->prefix('news_story'))) {
+            NewsUtils::NewsUtilityDropField('story_next', $db->prefix('news_story'));
         }
         // story_prev
-        if (NewsUtils::News_UtilityFieldExists('story_prev', $db->prefix('news_story'))) {
-            NewsUtils::News_UtilityDropField('story_prev', $db->prefix('news_story'));
+        if (NewsUtils::NewsUtilityFieldExists('story_prev', $db->prefix('news_story'))) {
+            NewsUtils::NewsUtilityDropField('story_prev', $db->prefix('news_story'));
         }
         // story_titleview
-        if (NewsUtils::News_UtilityFieldExists('story_titleview', $db->prefix('news_story'))) {
-            NewsUtils::News_UtilityDropField('story_titleview', $db->prefix('news_story'));
+        if (NewsUtils::NewsUtilityFieldExists('story_titleview', $db->prefix('news_story'))) {
+            NewsUtils::NewsUtilityDropField('story_titleview', $db->prefix('news_story'));
         }
         // story_modid
-        if (NewsUtils::News_UtilityFieldExists('story_modid', $db->prefix('news_story'))) {
-            NewsUtils::News_UtilityDropField('story_modid', $db->prefix('news_story'));
+        if (NewsUtils::NewsUtilityFieldExists('story_modid', $db->prefix('news_story'))) {
+            NewsUtils::NewsUtilityDropField('story_modid', $db->prefix('news_story'));
         }
         // topic sub
-        if (!NewsUtils::News_UtilityFieldExists('topic_showsub', $db->prefix('news_topic'))) {
-            NewsUtils::News_UtilityAddField('topic_showsub', $db->prefix('news_topic'));
+        if (!NewsUtils::NewsUtilityFieldExists('topic_showsub', $db->prefix('news_topic'))) {
+            NewsUtils::NewsUtilityAddField('topic_showsub', $db->prefix('news_topic'));
         }
         // Update topic index
         // remove old index topic_alias
@@ -139,7 +139,7 @@ function xoops_module_update_news($module, $version)
         }
 
         // Add news_story table
-        if (!NewsUtils::News_UtilityTableExists($db->prefix('news_story'))) {
+        if (!NewsUtils::NewsUtilityTableExists($db->prefix('news_story'))) {
             $sql = "RENAME TABLE `" . $db->prefix('stories') . "` TO `" . $db->prefix('news_story') . "`";
             if ($db->query($sql)) {
                 /*
@@ -328,7 +328,7 @@ function xoops_module_update_news($module, $version)
         }
 
         // Add news_topic table
-        if (!NewsUtils::News_UtilityTableExists($db->prefix('news_topic'))) {
+        if (!NewsUtils::NewsUtilityTableExists($db->prefix('news_topic'))) {
             $sql = "RENAME TABLE `" . $db->prefix('topics') . "` TO `" . $db->prefix('news_topic') . "`";
             if ($db->query($sql)) {
                 /*
@@ -463,7 +463,7 @@ function xoops_module_update_news($module, $version)
         }
 
         // Add news_file table
-        if (!NewsUtils::News_UtilityTableExists($db->prefix('news_file'))) {
+        if (!NewsUtils::NewsUtilityTableExists($db->prefix('news_file'))) {
             $sql = "RENAME TABLE `" . $db->prefix('stories_files') . "` TO `" . $db->prefix('news_file') . "`";
             if ($db->query($sql)) {
                 /*
@@ -514,7 +514,7 @@ function xoops_module_update_news($module, $version)
         }
 
         // Add news_rate table
-        if (!NewsUtils::News_UtilityTableExists($db->prefix('news_rate'))) {
+        if (!NewsUtils::NewsUtilityTableExists($db->prefix('news_rate'))) {
             $sql = "RENAME TABLE `" . $db->prefix('stories_votedata') . "` TO `" . $db->prefix('news_rate') . "`";
             if ($db->query($sql)) {
                 /*

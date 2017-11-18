@@ -26,7 +26,7 @@ function news_topic_show($options)
     $topic_handler = xoops_getmodulehandler('topic', 'news');
     $module_handler = xoops_gethandler('module');
 
-    $block = array();
+    $block = [];
     $block['showtype'] = $options[1];
     $block['img'] = $options[2];
     $block['description'] = $options[3];
@@ -46,9 +46,9 @@ function news_topic_show($options)
 
 
     if ($count) {
-        $info['newscountbytopic'] = $story_handler->News_StoryCountByTopic();
+        $info['newscountbytopic'] = $story_handler->NewsStoryCountByTopic();
     }
-    $topics = $topic_handler->News_TopicBlockList($info);
+    $topics = $topic_handler->NewsTopicBlockList($info);
     $block['topics'] = $topics;
     $block['float'] = $float;
     $block['count'] = $count;

@@ -26,7 +26,7 @@ class news_rate extends XoopsObject
     /**
      * Class constructor
      */
-    public function news_rate()
+    public function __construct()
     {
         $this->initVar("rate_id", XOBJ_DTYPE_INT, '');
         $this->initVar("rate_story", XOBJ_DTYPE_INT, '');
@@ -46,7 +46,7 @@ class news_rate extends XoopsObject
      **/
     public function toArray()
     {
-        $ret = array();
+        $ret = [];
         $vars = $this->getVars();
         foreach (array_keys($vars) as $i) {
             $ret [$i] = $this->getVar($i);
@@ -59,9 +59,9 @@ class news_rate extends XoopsObject
 class NewsRateHandler extends XoopsPersistableObjectHandler
 {
 
-    public function NewsRateHandler($db)
+    public function __construct($db)
     {
-        parent::XoopsPersistableObjectHandler($db, 'news_rate', 'news_rate', 'rate_id', 'rate_story');
+        parent::__construct($db, 'news_rate', 'news_rate', 'rate_id', 'rate_story');
     }
 
     /**
@@ -70,15 +70,15 @@ class NewsRateHandler extends XoopsPersistableObjectHandler
      * @param   Array $info
      * @return  boolean
      **/
-    public function News_RateDo($info)
+    public function NewsRateDo($info)
     {
-        $ret = array();
-        if (in_array($info['rate'], array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10))) {
+        $ret = [];
+        if (in_array($info['rate'], [1, 2, 3, 4, 5, 6, 7, 8, 9, 10])) {
             // Get and check user ID
-            $info['user'] = NewsUtils::News_UtilityCurrentUserID();
+            $info['user'] = NewsUtils::NewsUtilityCurrentUserID();
             if ($info['user']) {
                 // Check voted to this story or not
-                if (!self::News_RateCheckUser($info)) {
+                if (!self::NewsRateCheckUser($info)) {
                     $obj = $this->create();
                     $obj->setVar('rate_story', $info['story']);
                     $obj->setVar('rate_user', $info['user']);
@@ -86,7 +86,7 @@ class NewsRateHandler extends XoopsPersistableObjectHandler
                     $obj->setVar('rate_hostname', getenv("REMOTE_ADDR"));
                     $obj->setVar('rate_created', time());
                     if ($this->insert($obj)) {
-                        self::News_RateMake($info);
+                        self::NewsRateMake($info);
                         $ret['status'] = 1;
                         $ret['message'] = _NEWS_MD_RATE_MESSAGE_SAVE;
                     } else {
@@ -114,7 +114,7 @@ class NewsRateHandler extends XoopsPersistableObjectHandler
      * @param   String $alias
      * @return  boolean
      **/
-    public function News_RateCheckUser($info)
+    public function NewsRateCheckUser($info)
     {
         $criteria = new CriteriaCompo();
         $criteria->add(new Criteria('rate_story', $info['story']));
@@ -122,7 +122,7 @@ class NewsRateHandler extends XoopsPersistableObjectHandler
         return $this->getCount($criteria);
     }
 
-    public function News_RateMake($info)
+    public function NewsRateMake($info)
     {
 
         $sql = 'SELECT rate_rating FROM ' . $this->table . ' WHERE rate_story = ' . $info['story'];
@@ -136,7 +136,7 @@ class NewsRateHandler extends XoopsPersistableObjectHandler
         $finalrating = number_format($finalrating, 4);
         //
         $story_handler = xoops_getModuleHandler("story", "news");
-        $story_handler->News_StoryUpdateRating($info['story'], $finalrating, $votes);
+        $story_handler->NewsStoryUpdateRating($info['story'], $finalrating, $votes);
 
 
     }

@@ -308,6 +308,7 @@ if (typeof jwplayer == "undefined") {
             }
             return k + g + "/" + c.join("/")
         };
+
         function a(d) {
             if (!b.utils.exists(d)) {
                 return
@@ -871,6 +872,7 @@ if (typeof jwplayer == "undefined") {
         e.utils.mediaparser.parseMedia = function (j) {
             return d(j)
         };
+
         function c(k, j) {
             if (!e.utils.exists(j)) {
                 j = g[k]
@@ -1136,6 +1138,7 @@ if (typeof jwplayer == "undefined") {
             f = !c.utils.exists(f) ? b(g) : f;
             return e(g, f)
         };
+
         function b(f) {
             var g = ["true", "false", "t", "f"];
             if (g.toString().indexOf(f.toLowerCase().replace(" ", "")) >= 0) {
@@ -1367,6 +1370,7 @@ if (typeof jwplayer == "undefined") {
             }
             return c
         };
+
         function a(d) {
             var e = {};
             for (var c = 0; c < d.childNodes.length; c++) {
@@ -1445,6 +1449,7 @@ if (typeof jwplayer == "undefined") {
             var l;
             var c = new a.events.eventdispatcher();
             a.utils.extend(this, c);
+
             function e() {
                 switch (a.utils.getPluginPathType(b)) {
                     case a.utils.pluginPathType.ABSOLUTE:
@@ -1567,6 +1572,7 @@ if (typeof jwplayer == "undefined") {
             var b = false;
             var c = new a.events.eventdispatcher();
             a.utils.extend(this, c);
+
             function f() {
                 if (!b) {
                     b = true;
@@ -1661,6 +1667,7 @@ if (typeof jwplayer == "undefined") {
             this.getContainer = function () {
                 return this.container
             };
+
             function e(u, t) {
                 return function (z, v, w, x) {
                     if (u.renderingMode == "flash" || u.renderingMode == "html5") {
@@ -1980,6 +1987,7 @@ if (typeof jwplayer == "undefined") {
                     return this.callInternal("jwAttachMedia")
                 }
             };
+
             function g(t) {
                 return function (v) {
                     var u = v.newstate, x = v.oldstate;
@@ -2007,6 +2015,7 @@ if (typeof jwplayer == "undefined") {
                 q[t][u].push(v);
                 return this
             };
+
             function m(t, u) {
                 return function (w) {
                     if (t == w.component) {
@@ -2045,6 +2054,7 @@ if (typeof jwplayer == "undefined") {
                     }
                 }
             };
+
             function f(v, t) {
                 var x = b.utils.extend({}, t);
                 if (v == b.api.events.JWPLAYER_FULLSCREEN && !x.fullscreen) {
@@ -2106,6 +2116,7 @@ if (typeof jwplayer == "undefined") {
             this.getCurrentItem = function () {
                 return this.callInternal("jwGetPlaylistIndex")
             };
+
             function o(v, x, w) {
                 var t = [];
                 if (!x) {
@@ -2291,6 +2302,7 @@ if (typeof jwplayer == "undefined") {
             j.load();
             return h
         };
+
         function b() {
             if (!document.body) {
                 return setTimeout(b, 15)
@@ -2625,6 +2637,7 @@ if (typeof jwplayer == "undefined") {
                 _hide = function (v) {
                     _css(v, {display: "none"})
                 };
+
                 function r(v) {
                     _imageWidth = q.display_image.naturalWidth;
                     _imageHeight = q.display_image.naturalHeight;
@@ -2667,6 +2680,7 @@ if (typeof jwplayer == "undefined") {
                     return true
                 }
             };
+
             function e(j, l, h) {
                 if (h) {
                     return false
@@ -2997,6 +3011,7 @@ if (typeof jwplayer == "undefined") {
             var b;
             var h;
             k();
+
             function k() {
                 o();
                 c();
@@ -3044,6 +3059,7 @@ if (typeof jwplayer == "undefined") {
             if (!h.file) {
                 return
             }
+
             function f() {
                 if (h.link) {
                     b.onmouseover = g;
@@ -3124,6 +3140,7 @@ if (typeof jwplayer == "undefined") {
                     backgroundColor: I(),
                     zIndex: 0
                 });
+
                 function I() {
                     if (w.skin.getComponentSettings("display") && w.skin.getComponentSettings("display").backgroundcolor) {
                         return w.skin.getComponentSettings("display").backgroundcolor
@@ -3209,6 +3226,7 @@ if (typeof jwplayer == "undefined") {
                     }
                 }
             };
+
             function g(I) {
                 switch (I.keyCode) {
                     case 27:
@@ -3454,6 +3472,7 @@ if (typeof jwplayer == "undefined") {
                     h(y.width, y.height)
                 }
             };
+
             function D(I) {
                 return ([a.html5.view.positions.TOP, a.html5.view.positions.RIGHT, a.html5.view.positions.BOTTOM, a.html5.view.positions.LEFT].toString().indexOf(I.toUpperCase()) > -1)
             }
@@ -3552,6 +3571,7 @@ if (typeof jwplayer == "undefined") {
             var H;
             var Z = new a.html5.eventdispatcher();
             _utils.extend(this, Z);
+
             function K() {
                 if (!ab) {
                     ab = l.skin.getSkinElement("controlbar", "background");
@@ -3623,6 +3643,7 @@ if (typeof jwplayer == "undefined") {
                     ad()
                 }
             };
+
             function r() {
                 var an = ["timeSlider", "volumeSlider", "timeSliderRail", "volumeSliderRail"];
                 for (var ao in an) {
@@ -4347,6 +4368,7 @@ if (typeof jwplayer == "undefined") {
             });
             k.addEventListener(b.api.events.JWPLAYER_PLAYLIST_LOADED, M);
             k.addEventListener(b.api.events.JWPLAYER_FULLSCREEN, o);
+
             function D() {
                 try {
                     u(k.item);
@@ -4661,6 +4683,7 @@ if (typeof jwplayer == "undefined") {
             }
 
             b.html5.controller.repeatoptions = {LIST: "LIST", ALWAYS: "ALWAYS", SINGLE: "SINGLE", NONE: "NONE"};
+
             function C() {
                 switch (k.config.repeat.toUpperCase()) {
                     case b.html5.controller.repeatoptions.SINGLE:
@@ -4836,6 +4859,7 @@ if (typeof jwplayer == "undefined") {
             h.jwAddEventListener(a.api.events.JWPLAYER_PLAYLIST_ITEM, o);
             h.jwAddEventListener(a.api.events.JWPLAYER_ERROR, p);
             M();
+
             function M() {
                 R.display = D("div", "display");
                 R.display_text = D("div", "display_text");
@@ -4897,6 +4921,7 @@ if (typeof jwplayer == "undefined") {
                     g = true
                 }
             };
+
             function z(T) {
                 x = R.display_image.naturalWidth;
                 P = R.display_image.naturalHeight;
@@ -5221,6 +5246,7 @@ if (typeof jwplayer == "undefined") {
                 }
                 k(j, E)
             };
+
             function s(G) {
             }
 
@@ -5406,6 +5432,7 @@ if (typeof jwplayer == "undefined") {
             var t;
             var h = false;
             g();
+
             function g() {
                 o();
                 q.jwAddEventListener(a.api.events.JWPLAYER_PLAYER_STATE, j);
@@ -5458,6 +5485,7 @@ if (typeof jwplayer == "undefined") {
             this.getDisplayElement = function () {
                 return t
             };
+
             function l() {
                 if (d.link) {
                     t.onmouseover = f;
@@ -5732,6 +5760,7 @@ if (typeof jwplayer == "undefined") {
             this.attachMedia = function () {
                 C = true
             };
+
             function t(O, N) {
                 return function (P) {
                     if (C && e.exists(P.target.parentNode)) {
@@ -6059,6 +6088,7 @@ if (typeof jwplayer == "undefined") {
             this.hasChrome = function () {
                 return (g != a.api.events.state.IDLE)
             };
+
             function o(v) {
                 var s = v.levels[0].file;
                 s = ["http://www.youtube.com/v/", d(s), "&amp;hl=en_US&amp;fs=1&autoplay=1"].join("");
@@ -6249,6 +6279,7 @@ if (typeof jwplayer == "undefined") {
                     }
                 }
             }
+
             function _loadExternal(playlistfile) {
                 var loader = new jwplayer.html5.playlistloader();
                 loader.addEventListener(jwplayer.api.events.JWPLAYER_PLAYLIST_LOADED, function (evt) {
@@ -6316,6 +6347,7 @@ if (typeof jwplayer == "undefined") {
                     _loadComplete()
                 }
             };
+
             function _getShuffleItem() {
                 var result = null;
                 if (_model.playlist.length > 1) {
@@ -6492,6 +6524,7 @@ if (typeof jwplayer == "undefined") {
             this.hide = function () {
                 _hide(x)
             };
+
             function j() {
                 x = document.createElement("div");
                 x.id = w.id + "_jwplayer_playlistcomponent";
@@ -6800,6 +6833,7 @@ if (typeof jwplayer == "undefined") {
             }
             return c
         };
+
         function a(e) {
             if (b.utils.isYouTube(e.file)) {
                 return "youtube"
@@ -6848,6 +6882,7 @@ if (typeof jwplayer == "undefined") {
             this.load = function (e) {
                 a.utils.ajax(e, d, b)
             };
+
             function d(g) {
                 var f = [];
                 try {
@@ -7099,6 +7134,7 @@ if (typeof jwplayer == "undefined") {
                     }
                 }
             };
+
             function e() {
                 if (l.state == a.api.events.state.PLAYING || l.state == a.api.events.state.BUFFERING) {
                     k.pause()
@@ -7116,6 +7152,7 @@ if (typeof jwplayer == "undefined") {
             m.jwLoad = k.load;
             m.jwDetachMedia = k.detachMedia;
             m.jwAttachMedia = k.attachMedia;
+
             function h(o) {
                 return function () {
                     return l[o]
@@ -7178,6 +7215,7 @@ if (typeof jwplayer == "undefined") {
             };
             m.jwUnlock = function () {
             };
+
             function b() {
                 if (l.config.playlistfile) {
                     l.addEventListener(a.api.events.JWPLAYER_PLAYLIST_LOADED, g);

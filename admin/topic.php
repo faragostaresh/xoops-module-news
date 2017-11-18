@@ -25,7 +25,7 @@ include_once XOOPS_ROOT_PATH . "/class/pagenav.php";
 // Display Admin header
 xoops_cp_header();
 // Define default value
-$op = NewsUtils::News_UtilityCleanVars($_REQUEST, 'op', '', 'string');
+$op = NewsUtils::NewsUtilityCleanVars($_REQUEST, 'op', '', 'string');
 // Initialize content handler
 $topic_handler = xoops_getmodulehandler('topic', 'news');
 $story_handler = xoops_getmodulehandler('story', 'news');
@@ -46,21 +46,21 @@ switch ($op) {
         break;
 
     case 'edit_topic':
-        $topic_id = NewsUtils::News_UtilityCleanVars($_REQUEST, 'topic_id', 0, 'int');
+        $topic_id = NewsUtils::NewsUtilityCleanVars($_REQUEST, 'topic_id', 0, 'int');
         if ($topic_id > 0) {
             $obj = $topic_handler->get($topic_id);
             $obj->getForm();
         } else {
-            NewsUtils::News_UtilityRedirect('topic.php', 1, _NEWS_AM_MSG_EDIT_ERROR);
+            NewsUtils::NewsUtilityRedirect('topic.php', 1, _NEWS_AM_MSG_EDIT_ERROR);
         }
         break;
 
     case 'delete_topic':
-        $topic_id = NewsUtils::News_UtilityCleanVars($_REQUEST, 'topic_id', 0, 'int');
+        $topic_id = NewsUtils::NewsUtilityCleanVars($_REQUEST, 'topic_id', 0, 'int');
         if ($topic_id > 0) {
             $topic = $topic_handler->get($topic_id);
             // Prompt message
-            NewsUtils::News_UtilityMessage('backend.php', sprintf(_NEWS_AM_MSG_DELETE, '"' . $topic->getVar('topic_title') . '"'), $topic_id, 'topic');
+            NewsUtils::NewsUtilityMessage('backend.php', sprintf(_NEWS_AM_MSG_DELETE, '"' . $topic->getVar('topic_title') . '"'), $topic_id, 'topic');
             // Display Admin footer
             xoops_cp_footer();
         }
@@ -90,20 +90,20 @@ switch ($op) {
 
         // get limited information
         if (isset($_REQUEST['limit'])) {
-            $topic_limit = NewsUtils::News_UtilityCleanVars($_REQUEST, 'limit', 0, 'int');
+            $topic_limit = NewsUtils::NewsUtilityCleanVars($_REQUEST, 'limit', 0, 'int');
         } else {
             $topic_limit = $topic_perpage;
         }
 
         // get start information
         if (isset($_REQUEST['start'])) {
-            $topic_start = NewsUtils::News_UtilityCleanVars($_REQUEST, 'start', 0, 'int');
+            $topic_start = NewsUtils::NewsUtilityCleanVars($_REQUEST, 'start', 0, 'int');
         } else {
             $topic_start = 0;
         }
 
-        $topics = $topic_handler->News_TopicAdminList($topic_limit, $topic_start);
-        $topic_numrows = $topic_handler->News_TopicCount();
+        $topics = $topic_handler->NewsTopicAdminList($topic_limit, $topic_start);
+        $topic_numrows = $topic_handler->NewsTopicCount();
 
         if ($topic_numrows > $topic_limit) {
             $topic_pagenav = new XoopsPageNav($topic_numrows, $topic_limit, $topic_start, 'start', 'limit=' . $topic_limit);
@@ -119,7 +119,7 @@ switch ($op) {
         $xoopsTpl->assign('xoops_dirname', 'news');
 
         // Call template file
-        $xoopsTpl->display(XOOPS_ROOT_PATH . '/modules/news/templates/admin/news_topic.html');
+        $xoopsTpl->display(XOOPS_ROOT_PATH . '/modules/news/templates/admin/news_topic.tpl');
 
         break;
 }

@@ -32,7 +32,7 @@ if (count(array_intersect($group, $groups)) <= 0) {
 }
 
 // Define default value
-$op = NewsUtils::News_UtilityCleanVars($_REQUEST, 'op', 'display', 'string');
+$op = NewsUtils::NewsUtilityCleanVars($_REQUEST, 'op', 'display', 'string');
 // Add module stylesheet
 $xoTheme->addStylesheet(XOOPS_URL . '/modules/news/css/admin.css');
 $xoTheme->addStylesheet(XOOPS_URL . '/modules/system/css/admin.css');
@@ -102,44 +102,44 @@ switch ($op) {
         break;
 
     case 'alias':
-        $start_id = NewsUtils::News_UtilityCleanVars($_REQUEST, 'start_id', '1', 'int');
-        $end_id = NewsUtils::News_UtilityCleanVars($_REQUEST, 'end_id', '1', 'int');
-        NewsUtils::News_UtilityRebuild($story_handler, 'story_id', 'alias', 'story_alias', 'story_title', $start_id, $end_id);
-        NewsUtils::News_UtilityRedirect('tools.php', 1, _NEWS_AM_MSG_WAIT);
+        $start_id = NewsUtils::NewsUtilityCleanVars($_REQUEST, 'start_id', '1', 'int');
+        $end_id = NewsUtils::NewsUtilityCleanVars($_REQUEST, 'end_id', '1', 'int');
+        NewsUtils::NewsUtilityRebuild($story_handler, 'story_id', 'alias', 'story_alias', 'story_title', $start_id, $end_id);
+        NewsUtils::NewsUtilityRedirect('tools.php', 1, _NEWS_AM_MSG_WAIT);
         break;
 
     case 'topicalias':
-        $start_id = NewsUtils::News_UtilityCleanVars($_REQUEST, 'start_id', '1', 'int');
-        $end_id = NewsUtils::News_UtilityCleanVars($_REQUEST, 'end_id', '1', 'int');
-        NewsUtils::News_UtilityRebuild($topic_handler, 'topic_id', 'topicalias', 'topic_alias', 'topic_title', $start_id, $end_id);
-        NewsUtils::News_UtilityRedirect('tools.php', 1, _NEWS_AM_MSG_WAIT);
+        $start_id = NewsUtils::NewsUtilityCleanVars($_REQUEST, 'start_id', '1', 'int');
+        $end_id = NewsUtils::NewsUtilityCleanVars($_REQUEST, 'end_id', '1', 'int');
+        NewsUtils::NewsUtilityRebuild($topic_handler, 'topic_id', 'topicalias', 'topic_alias', 'topic_title', $start_id, $end_id);
+        NewsUtils::NewsUtilityRedirect('tools.php', 1, _NEWS_AM_MSG_WAIT);
         break;
 
     case 'keyword':
-        $start_id = NewsUtils::News_UtilityCleanVars($_REQUEST, 'start_id', '1', 'int');
-        $end_id = NewsUtils::News_UtilityCleanVars($_REQUEST, 'end_id', '1', 'int');
-        NewsUtils::News_UtilityRebuild($story_handler, 'story_id', 'keyword', 'story_words', 'story_title', $start_id, $end_id);
-        NewsUtils::News_UtilityRedirect('tools.php', 1, _NEWS_AM_MSG_WAIT);
+        $start_id = NewsUtils::NewsUtilityCleanVars($_REQUEST, 'start_id', '1', 'int');
+        $end_id = NewsUtils::NewsUtilityCleanVars($_REQUEST, 'end_id', '1', 'int');
+        NewsUtils::NewsUtilityRebuild($story_handler, 'story_id', 'keyword', 'story_words', 'story_title', $start_id, $end_id);
+        NewsUtils::NewsUtilityRedirect('tools.php', 1, _NEWS_AM_MSG_WAIT);
         break;
 
     case 'description':
-        $start_id = NewsUtils::News_UtilityCleanVars($_REQUEST, 'start_id', '1', 'int');
-        $end_id = NewsUtils::News_UtilityCleanVars($_REQUEST, 'end_id', '1', 'int');
-        NewsUtils::News_UtilityRebuild($story_handler, 'story_id', 'description', 'story_desc', 'story_title', $start_id, $end_id);
-        NewsUtils::News_UtilityRedirect('tools.php', 1, _NEWS_AM_MSG_WAIT);
+        $start_id = NewsUtils::NewsUtilityCleanVars($_REQUEST, 'start_id', '1', 'int');
+        $end_id = NewsUtils::NewsUtilityCleanVars($_REQUEST, 'end_id', '1', 'int');
+        NewsUtils::NewsUtilityRebuild($story_handler, 'story_id', 'description', 'story_desc', 'story_title', $start_id, $end_id);
+        NewsUtils::NewsUtilityRedirect('tools.php', 1, _NEWS_AM_MSG_WAIT);
         break;
 
     case 'prune':
-        $timestamp = NewsUtils::News_UtilityCleanVars($_REQUEST, 'prune_date', '', 'int');
-        $expired = NewsUtils::News_UtilityCleanVars($_REQUEST, 'onlyexpired', 0, 'int');
+        $timestamp = NewsUtils::NewsUtilityCleanVars($_REQUEST, 'prune_date', '', 'int');
+        $expired = NewsUtils::NewsUtilityCleanVars($_REQUEST, 'onlyexpired', 0, 'int');
         $timestamp = strtotime($_REQUEST ['prune_date']);
         $topiclist = '';
         if (isset($_REQUEST['pruned_topics'])) {
             $topiclist = implode(',', $_REQUEST['pruned_topics']);
         }
-        $count = $story_handler->News_StoryPruneCount($timestamp, $expired, $topiclist);
-        $story_handler->News_StoryDeleteBeforeDate($timestamp, $expired, $topiclist);
-        NewsUtils::News_UtilityRedirect('tools.php', 100, sprintf(_NEWS_AM_MSG_PRUNE_DELETED, $count));
+        $count = $story_handler->NewsStoryPruneCount($timestamp, $expired, $topiclist);
+        $story_handler->NewsStoryDeleteBeforeDate($timestamp, $expired, $topiclist);
+        NewsUtils::NewsUtilityRedirect('tools.php', 100, sprintf(_NEWS_AM_MSG_PRUNE_DELETED, $count));
         break;
 }
 
@@ -147,7 +147,7 @@ $xoopsTpl->assign('navigation', 'tools');
 $xoopsTpl->assign('navtitle', _NEWS_MI_TOOLS);
 
 // Call template file
-$xoopsTpl->display(XOOPS_ROOT_PATH . '/modules/news/templates/admin/news_tools.html');
+$xoopsTpl->display(XOOPS_ROOT_PATH . '/modules/news/templates/admin/news_tools.tpl');
 
 // Display Xoops footer
 include "footer.php";

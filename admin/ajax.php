@@ -24,22 +24,22 @@ require dirname(__FILE__) . '/header.php';
 error_reporting(0);
 $GLOBALS['xoopsLogger']->activated = false;
 
-$ajax_type = NewsUtils::News_UtilityCleanVars($_REQUEST, 'type', '', 'string');
+$ajax_type = NewsUtils::NewsUtilityCleanVars($_REQUEST, 'type', '', 'string');
 
 switch ($ajax_type) {
     case 'filter':
-        $value = $func = NewsUtils::News_UtilityCleanVars($_REQUEST, 'value', '', 'string');
-        echo NewsUtils::News_UtilityAliasFilter($value);
+        $value = $func = NewsUtils::NewsUtilityCleanVars($_REQUEST, 'value', '', 'string');
+        echo NewsUtils::NewsUtilityAliasFilter($value);
         break;
 
     case 'words':
-        $value = $func = NewsUtils::News_UtilityCleanVars($_REQUEST, 'value', '', 'string');
-        echo NewsUtils::News_UtilityMetaFilter($value);
+        $value = $func = NewsUtils::NewsUtilityCleanVars($_REQUEST, 'value', '', 'string');
+        echo NewsUtils::NewsUtilityMetaFilter($value);
         break;
 
     case 'desc':
-        $value = $func = NewsUtils::News_UtilityCleanVars($_REQUEST, 'value', '', 'string');
-        echo NewsUtils::News_UtilityAjaxFilter($value);
+        $value = $func = NewsUtils::NewsUtilityCleanVars($_REQUEST, 'value', '', 'string');
+        echo NewsUtils::NewsUtilityAjaxFilter($value);
         break;
 }
 

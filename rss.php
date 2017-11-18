@@ -35,7 +35,7 @@ $xoopsTpl = new XoopsTpl();
 $xoopsTpl->caching = 2;
 $xoopsTpl->cache_lifetime = 3600;
 $myts = MyTextSanitizer::getInstance();
-if (!$xoopsTpl->is_cached('db:news_rss.html')) {
+if (!$xoopsTpl->is_cached('db:news_rss.tpl')) {
     // Check if ML Hack is installed, and if yes, parse the $story in formatForML
     if (method_exists($myts, 'formatForML')) {
         $xoopsConfig['sitename'] = $myts->formatForML($xoopsConfig['sitename']);
@@ -43,7 +43,7 @@ if (!$xoopsTpl->is_cached('db:news_rss.html')) {
         $channel_category = $myts->formatForML('news');
     }
     $xoopsTpl->assign('channel_charset', _CHARSET);
-    $xoopsTpl->assign('docs', 'http://cyber.law.harvard.edu/rss/rss.html');
+    $xoopsTpl->assign('docs', 'http://cyber.law.harvard.edu/rss/rss.tpl');
     $xoopsTpl->assign('channel_title', htmlspecialchars($xoopsConfig['sitename'], ENT_QUOTES));
     $xoopsTpl->assign('channel_link', XOOPS_URL . '/');
     $xoopsTpl->assign('channel_desc', htmlspecialchars($xoopsConfig['slogan'], ENT_QUOTES));
@@ -70,29 +70,29 @@ if (!$xoopsTpl->is_cached('db:news_rss.html')) {
 
     $topic_handler = xoops_getmodulehandler('topic', 'news');
     if (isset($_REQUEST["topic"])) {
-        $story_topic = NewsUtils::News_UtilityCleanVars($_REQUEST, 'topic', 0, 'int');
+        $story_topic = NewsUtils::NewsUtilityCleanVars($_REQUEST, 'topic', 0, 'int');
         $topics = $story_handler->get($story_topic);
     } else {
         $story_topic = null;
-        $topics = $topic_handler->getall();
+        $topics = $topic_handler->getAll();
     }
 
-    $story_infos = array(
-        'topics' => $topics,
-        'story_limit' => xoops_getModuleOption('rss_perpage', 'news'),
-        'story_topic' => $story_topic,
-        'story_start' => 0,
-        'story_order' => 'DESC',
-        'story_sort' => 'story_publish',
+    $story_infos = [
+        'topics'       => $topics,
+        'story_limit'  => xoops_getModuleOption('rss_perpage', 'news'),
+        'story_topic'  => $story_topic,
+        'story_start'  => 0,
+        'story_order'  => 'DESC',
+        'story_sort'   => 'story_publish',
         'story_status' => '1',
         'story_static' => true,
-        'admin_side' => false
-    );
+        'admin_side'   => false,
+    ];
 
     $story_handler = xoops_getmodulehandler('story', 'news');
-    $stores = $story_handler->News_StoryList($story_infos);
+    $stores = $story_handler->NewsStoryList($story_infos);
 
     $xoopsTpl->assign('contents', $stores);
 }
-$xoopsTpl->display('db:news_rss.html');
+$xoopsTpl->display('db:news_rss.tpl');
 ?>

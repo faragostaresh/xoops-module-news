@@ -38,6 +38,7 @@ define("_NEWS_MI_BLOCK_LIST", "فهرست");
 define('_NEWS_MI_BLOCK_TOPIC', 'فهرست شاخه ها');
 define('_NEWS_MI_BLOCK_SLIDE', 'اسلاید');
 define('_NEWS_MI_BLOCK_MARQUEE', 'مارکیو');
+define('_NEWS_MI_BLOCK_BREAKING', 'Breaking');
 // Editor
 define("_NEWS_MI_FORM_EDITOR", "انتخاب فرم");
 define("_NEWS_MI_FORM_EDITOR_DESC", "انتخاب ویرایشگر برای استفاده در صفحه ارسال مطلب.");

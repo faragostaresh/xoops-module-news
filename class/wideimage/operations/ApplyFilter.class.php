@@ -19,7 +19,7 @@
  **/
 class wioApplyFilter
 {
-    static protected $one_arg_filters = array(IMG_FILTER_SMOOTH, IMG_FILTER_CONTRAST, IMG_FILTER_BRIGHTNESS);
+    static protected $one_arg_filters = [IMG_FILTER_SMOOTH, IMG_FILTER_CONTRAST, IMG_FILTER_BRIGHTNESS];
 
     function execute($image, $filter, $arg1 = null, $arg2 = null, $arg3 = null)
     {

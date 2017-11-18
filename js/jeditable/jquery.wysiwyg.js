@@ -350,7 +350,7 @@
                     .append(editor);
 
                 $(element)
-                    // .css('display', 'none')
+                // .css('display', 'none')
                     .hide()
                     .before(this.element);
 
@@ -489,9 +489,9 @@
                 $('<li></li>').append(
                     $('<a><!-- --></a>').addClass(className || cmd)
                 ).mousedown(function () {
-                        if (fn) fn.apply(self); else self.editorDoc.execCommand(cmd, false, args);
-                        if (self.options.autoSave) self.saveContent();
-                    }).appendTo(this.panel);
+                    if (fn) fn.apply(self); else self.editorDoc.execCommand(cmd, false, args);
+                    if (self.options.autoSave) self.saveContent();
+                }).appendTo(this.panel);
             },
 
             appendMenuSeparator: function () {

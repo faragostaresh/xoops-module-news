@@ -39,7 +39,7 @@ $xoTheme->addStylesheet(XOOPS_URL . '/modules/news/css/admin.css');
 $xoTheme->addStylesheet(XOOPS_URL . '/modules/system/css/admin.css');
 
 $permtoset = isset($_POST["permtoset"]) ? intval($_POST["permtoset"]) : 1;
-$selected = array("", "", "");
+$selected = ["", "", ""];
 $selected[$permtoset - 1] = " selected";
 
 $xoopsTpl->assign('selected0', $selected[0]);
@@ -53,11 +53,11 @@ switch ($permtoset) {
         $title_of_form = _NEWS_AM_PERMISSIONS_GLOBAL;
         $perm_name = 'news_ac';
         $perm_desc = "";
-        $global_perms_array = array(
+        $global_perms_array = [
             //'4' => _NEWS_AM_PERMISSIONS_GLOBAL_4, //we add Rate system for next version
-            '8' => _NEWS_AM_PERMISSIONS_GLOBAL_8,
-            '16' => _NEWS_AM_PERMISSIONS_GLOBAL_16
-        );
+            '8'  => _NEWS_AM_PERMISSIONS_GLOBAL_8,
+            '16' => _NEWS_AM_PERMISSIONS_GLOBAL_16,
+        ];
         break;
     case 2:
         $title_of_form = _NEWS_AM_PERMISSIONS_ACCESS;
@@ -87,17 +87,17 @@ if ($permtoset == 1) {
     $xoopsTpl->assign('permform', $permform->render());
 } else {
     $xt = new XoopsTopic($xoopsDB->prefix("news_topic"));
-    $alltopics =& $xt->getTopicsList();
+    $alltopics = $xt->getTopicsList();
 
     foreach ($alltopics as $topic_id => $topic) {
         $permform->addItem($topic_id, $topic["title"], $topic["pid"]);
     }
 
     //check if topics exist before rendering the form and redirect, if there are no topics   
-    if ($topic_handler->News_TopicCount()) {
+    if ($topic_handler->NewsTopicCount()) {
         $xoopsTpl->assign('permform', $permform->render());
     } else {
-        NewsUtils::News_UtilityRedirect('topic.php?op=new_topic', 02, _NEWS_AM_MSG_NOPERMSSET);
+        NewsUtils::NewsUtilityRedirect('topic.php?op=new_topic', 02, _NEWS_AM_MSG_NOPERMSSET);
         // Include footer
         xoops_cp_footer();
         exit ();
@@ -108,7 +108,7 @@ $xoopsTpl->assign('navigation', 'permission');
 $xoopsTpl->assign('navtitle', _NEWS_MI_PERM);
 
 // Call template file
-$xoopsTpl->display(XOOPS_ROOT_PATH . '/modules/news/templates/admin/news_permissions.html');
+$xoopsTpl->display(XOOPS_ROOT_PATH . '/modules/news/templates/admin/news_permissions.tpl');
 unset ($permform);
 
 include "footer.php";

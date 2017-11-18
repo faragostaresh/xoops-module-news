@@ -41,5 +41,7 @@ xoops_load('xoopsformloader');
 $story_handler = xoops_getmodulehandler('story', 'news');
 $topic_handler = xoops_getmodulehandler('topic', 'news');
 $file_handler = xoops_getmodulehandler('file', 'news');
-$perm_handler = NewsPermission::getHandler();
+
+$handler = new NewsPermission;
+$perm_handler = $handler->getHandler();
 ?>

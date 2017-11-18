@@ -25,7 +25,7 @@ include_once XOOPS_ROOT_PATH . "/class/pagenav.php";
 // Display Admin header
 xoops_cp_header();
 // Define default value
-$op = NewsUtils::News_UtilityCleanVars($_REQUEST, 'op', '', 'string');
+$op = NewsUtils::NewsUtilityCleanVars($_REQUEST, 'op', '', 'string');
 // Define scripts
 $xoTheme->addScript('browse.php?Frameworks/jquery/jquery.js');
 $xoTheme->addScript('browse.php?Frameworks/jquery/plugins/jquery.ui.js');
@@ -43,27 +43,27 @@ switch ($op) {
         break;
 
     case 'edit_file':
-        $file_id = NewsUtils::News_UtilityCleanVars($_REQUEST, 'file_id', 0, 'int');
+        $file_id = NewsUtils::NewsUtilityCleanVars($_REQUEST, 'file_id', 0, 'int');
         if ($file_id > 0) {
             $obj = $file_handler->get($file_id);
             $obj->getForm();
         } else {
-            NewsUtils::News_UtilityRedirect('file.php', 1, _NEWS_AM_MSG_EDIT_ERROR);
+            NewsUtils::NewsUtilityRedirect('file.php', 1, _NEWS_AM_MSG_EDIT_ERROR);
         }
         break;
 
     case 'delete_file':
-        $file_id = NewsUtils::News_UtilityCleanVars($_REQUEST, 'file_id', 0, 'int');
+        $file_id = NewsUtils::NewsUtilityCleanVars($_REQUEST, 'file_id', 0, 'int');
         if ($file_id > 0) {
             $file = $file_handler->get($file_id);
             // Prompt message
-            NewsUtils::News_UtilityMessage('backend.php', sprintf(_NEWS_AM_MSG_DELETE, '"' . $file->getVar('file_title') . '"'), $file_id, 'file');
+            NewsUtils::NewsUtilityMessage('backend.php', sprintf(_NEWS_AM_MSG_DELETE, '"' . $file->getVar('file_title') . '"'), $file_id, 'file');
             // Display Admin footer
             xoops_cp_footer();
         }
 
     default:
-        $file = array();
+        $file = [];
         // get module configs
 
         $file['perpage'] = '10';
@@ -72,30 +72,30 @@ switch ($op) {
 
         // get limited information
         if (isset($_REQUEST['limit'])) {
-            $file['limit'] = NewsUtils::News_UtilityCleanVars($_REQUEST, 'limit', 0, 'int');
+            $file['limit'] = NewsUtils::NewsUtilityCleanVars($_REQUEST, 'limit', 0, 'int');
         } else {
             $file['limit'] = $file['perpage'];
         }
 
         // get start information
         if (isset($_REQUEST['start'])) {
-            $file['start'] = NewsUtils::News_UtilityCleanVars($_REQUEST, 'start', 0, 'int');
+            $file['start'] = NewsUtils::NewsUtilityCleanVars($_REQUEST, 'start', 0, 'int');
         } else {
             $file['start'] = 0;
         }
 
         // get content
         if (isset($_REQUEST['content'])) {
-            $file['content'] = NewsUtils::News_UtilityCleanVars($_REQUEST, 'content', 0, 'int');
+            $file['content'] = NewsUtils::NewsUtilityCleanVars($_REQUEST, 'content', 0, 'int');
             $story = $story_handler->get($file['content']);
         } else {
-            $story = $story_handler->getall();
+            $story = $story_handler->getAll();
         }
 
 
-        $files = $file_handler->News_FileAdminList($file, $story);
+        $files = $file_handler->NewsFileAdminList($file, $story);
 
-        $file_numrows = $file_handler->News_FileCount();
+        $file_numrows = $file_handler->NewsFileCount();
 
         if ($file_numrows > $file['limit']) {
             $file_pagenav = new XoopsPageNav($file_numrows, $file['limit'], $file['start'], 'start', 'limit=' . $file['limit']);
@@ -111,7 +111,7 @@ switch ($op) {
         $xoopsTpl->assign('xoops_dirname', 'news');
 
         // Call template file
-        $xoopsTpl->display(XOOPS_ROOT_PATH . '/modules/news/templates/admin/news_file.html');
+        $xoopsTpl->display(XOOPS_ROOT_PATH . '/modules/news/templates/admin/news_file.tpl');
 
         break;
 }

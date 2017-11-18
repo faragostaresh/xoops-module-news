@@ -21,29 +21,29 @@
 // Include module header
 require dirname(__FILE__) . '/header.php';
 // Include content template
-$xoopsOption ['template_main'] = 'news_topic.html';
+$xoopsOption ['template_main'] = 'news_topic.tpl';
 // include Xoops header
-include XOOPS_ROOT_PATH . '/header.php';
+require_once XOOPS_ROOT_PATH . '/header.php';
 // Add Stylesheet
 $xoTheme->addStylesheet(XOOPS_URL . '/modules/news/css/style.css');
 
 // get limited information
 if (isset($_REQUEST['limit'])) {
-    $topic_limit = NewsUtils::News_UtilityCleanVars($_REQUEST, 'limit', 0, 'int');
+    $topic_limit = NewsUtils::NewsUtilityCleanVars($_REQUEST, 'limit', 0, 'int');
 } else {
     $topic_limit = xoops_getModuleOption('admin_perpage_topic', 'news');
 }
 
 // get start information
 if (isset($_REQUEST['start'])) {
-    $topic_start = NewsUtils::News_UtilityCleanVars($_REQUEST, 'start', 0, 'int');
+    $topic_start = NewsUtils::NewsUtilityCleanVars($_REQUEST, 'start', 0, 'int');
 } else {
     $topic_start = 0;
 }
 
-$newscountbytopic = $story_handler->News_StoryCountByTopic();
-$topics = $topic_handler->News_TopicList($topic_limit, $topic_start, $newscountbytopic);
-$topic_numrows = $topic_handler->News_TopicCount();
+$newscountbytopic = $story_handler->NewsStoryCountByTopic();
+$topics = $topic_handler->NewsTopicList($topic_limit, $topic_start, $newscountbytopic);
+$topic_numrows = $topic_handler->NewsTopicCount();
 
 if ($topic_numrows > $topic_limit) {
     $topic_pagenav = new XoopsPageNav($topic_numrows, $topic_limit, $topic_start, 'start', 'limit=' . $topic_limit);
@@ -63,7 +63,7 @@ if (xoops_getModuleOption('img_lightbox', 'news')) {
 
 // breadcrumb
 if (xoops_getModuleOption('bc_show', 'news')) {
-    $breadcrumb = NewsUtils::News_UtilityBreadcrumb('topic.php', _NEWS_MD_TOPICS, 0, ' &raquo; ');
+    $breadcrumb = NewsUtils::NewsUtilityBreadcrumb('topic.php', _NEWS_MD_TOPICS, 0, ' &raquo; ');
     $xoopsTpl->assign('breadcrumb', $breadcrumb);
 }
 
@@ -74,5 +74,5 @@ $xoopsTpl->assign('imgwidth', xoops_getModuleOption('imgwidth', 'news'));
 $xoopsTpl->assign('imgfloat', xoops_getModuleOption('imgfloat', 'news'));
 
 // include Xoops footer
-include XOOPS_ROOT_PATH . '/footer.php';
+require_once XOOPS_ROOT_PATH . '/footer.php';
 ?>

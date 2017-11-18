@@ -31,8 +31,8 @@ function news_marquee_show($options)
 
     global $xoTheme;
 
-    $block = array();
-    $story_infos = array();
+    $block = [];
+    $story_infos = [];
     $story_infos['story_limit'] = $options[1];
     $story_infos['title_lenght'] = $options[2];
     $block['show_date'] = $options[3];
@@ -42,8 +42,8 @@ function news_marquee_show($options)
     array_shift($options);
     array_shift($options);
 
-    $story_infos['topics'] = $topic_handler->getall();
-    $block['marquee'] = $story_handler->News_StoryMarquee($story_infos, $options);
+    $story_infos['topics'] = $topic_handler->getAll();
+    $block['marquee'] = $story_handler->NewsStoryMarquee($story_infos, $options);
 
     $xoTheme->addScript("browse.php?Frameworks/jquery/jquery.js");
     $xoTheme->addScript(XOOPS_URL . '/modules/news/js/marquee/marquee.js');
@@ -63,7 +63,7 @@ function news_marquee_edit($options)
     $criteria = new CriteriaCompo();
     $criteria->setSort('topic_weight ASC, topic_title');
     $criteria->setOrder('ASC');
-    $topic_arr = $topic_handler->getall($criteria);
+    $topic_arr = $topic_handler->getAll($criteria);
 
     $form = "<input type=\"hidden\" name=\"options[]\" value=\"" . $options[0] . "\" />";
     $form .= _NEWS_MB_NUMBER . " : <input type=\"text\" name=\"options[1]\" size=\"5\" maxlength=\"10\" value=\"" . $options[1] . "\" type=\"text\" /><br />\n";

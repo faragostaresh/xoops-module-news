@@ -25,31 +25,31 @@ error_reporting(0);
 $GLOBALS['xoopsLogger']->activated = false;
 
 // Set option
-$op = NewsUtils::News_UtilityCleanVars($_REQUEST, 'op', '', 'string');
+$op = NewsUtils::NewsUtilityCleanVars($_REQUEST, 'op', '', 'string');
 
 if (!empty($op)) {
     switch ($op) {
         // Get last story as json
         case 'liststory':
         case 'story':
-            $story_infos = array();
-            $story_infos['topics'] = $topic_handler->getall();
-            $story_infos['story_start'] = NewsUtils::News_UtilityCleanVars($_REQUEST, 'start', 0, 'int');
-            $story_infos['story_topic'] = NewsUtils::News_UtilityCleanVars($_REQUEST, 'storytopic', 0, 'int');
-            $story_infos['story_limit'] = NewsUtils::News_UtilityCleanVars($_REQUEST, 'limit', 10, 'int');
-            $story_infos['story_type'] = NewsUtils::News_UtilityCleanVars($_REQUEST, 'storytype', '', 'string');
-            $return = $story_handler->News_StoryJson($story_infos);
+            $story_infos = [];
+            $story_infos['topics'] = $topic_handler->getAll();
+            $story_infos['story_start'] = NewsUtils::NewsUtilityCleanVars($_REQUEST, 'start', 0, 'int');
+            $story_infos['story_topic'] = NewsUtils::NewsUtilityCleanVars($_REQUEST, 'storytopic', 0, 'int');
+            $story_infos['story_limit'] = NewsUtils::NewsUtilityCleanVars($_REQUEST, 'limit', 10, 'int');
+            $story_infos['story_type'] = NewsUtils::NewsUtilityCleanVars($_REQUEST, 'storytype', '', 'string');
+            $return = $story_handler->NewsStoryJson($story_infos);
             break;
 
         // Get single story as json
         case 'singlestory':
-            $ret = array();
-            $story_id = NewsUtils::News_UtilityCleanVars($_REQUEST, 'storyid', 0, 'int');
+            $ret = [];
+            $story_id = NewsUtils::NewsUtilityCleanVars($_REQUEST, 'storyid', 0, 'int');
             $obj = $story_handler->get($story_id);
             $story = $obj->toArray();
 
             // Update content hits
-            $story_handler->News_StoryUpdateHits($story_id);
+            $story_handler->NewsStoryUpdateHits($story_id);
 
             $json['story_id'] = $story['story_id'];
             $json['story_alias'] = $story['story_alias'];
@@ -85,12 +85,12 @@ if (!empty($op)) {
             $json['story_body'] = $text;
 
             if ($story['story_file'] > 0) {
-                $fileInfo = array();
+                $fileInfo = [];
                 $fileInfo['order'] = 'DESC';
                 $fileInfo['sort'] = 'file_id';
                 $fileInfo['start'] = 0;
                 $fileInfo['content'] = $story['story_id'];
-                $allfile = $file_handler->News_FileList($fileInfo);
+                $allfile = $file_handler->NewsFileList($fileInfo);
                 foreach ($allfile as $myfile) {
                     if ($myfile['file_type'] == 'mp4') {
                         $json['story_video'] = $myfile['fileurl'];
@@ -106,13 +106,13 @@ if (!empty($op)) {
             break;
 
         case 'singlegallery':
-            $ret = array();
-            $story_id = NewsUtils::News_UtilityCleanVars($_REQUEST, 'storyid', 0, 'int');
+            $ret = [];
+            $story_id = NewsUtils::NewsUtilityCleanVars($_REQUEST, 'storyid', 0, 'int');
             $obj = $story_handler->get($story_id);
             $story = $obj->toArray();
 
             // Update content hits
-            $story_handler->News_StoryUpdateHits($story_id);
+            $story_handler->NewsStoryUpdateHits($story_id);
 
             $json['story_id'] = $story['story_id'];
             $json['story_alias'] = $story['story_alias'];
@@ -159,11 +159,11 @@ if (!empty($op)) {
         // vote to story
         case 'rate':
             if (xoops_getModuleOption('vote_active', 'news')) {
-                $info = array();
-                $info['story'] = NewsUtils::News_UtilityCleanVars($_POST, 'story', 0, 'int');
-                $info['rate'] = NewsUtils::News_UtilityCleanVars($_POST, 'rate', 0, 'int');
+                $info = [];
+                $info['story'] = NewsUtils::NewsUtilityCleanVars($_POST, 'story', 0, 'int');
+                $info['rate'] = NewsUtils::NewsUtilityCleanVars($_POST, 'rate', 0, 'int');
                 if ($info['story'] && $info['rate']) {
-                    $return = $rate_handler->News_RateDo($info);
+                    $return = $rate_handler->NewsRateDo($info);
                 }
             }
             break;

@@ -23,6 +23,6 @@
     </td>
 </tr>
 <{if $topic.topic_children}>
-<{include file="db:news_topic_list.html" topics=$topic.topic_children level='even subLevel'}>
+<{include file="db:news_topic_list.tpl" topics=$topic.topic_children level='even subLevel'}>
 <{/if}>
 <{/foreach}>

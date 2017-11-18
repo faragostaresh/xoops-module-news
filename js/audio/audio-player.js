@@ -2,83 +2,90 @@
  is released under the MIT License <http://www.opensource.org/licenses/mit-license.php>
  */
 var audioplayer_swfobject = function () {
-    var d = "undefined", R = "object", s = "Shockwave Flash", w = "ShockwaveFlash.ShockwaveFlash", Q = "application/x-shockwave-flash", r = "SWFObjectExprInst", X = "onreadystatechange", o = window, J = document, T = navigator, t = false, u = [H], O = [], n = [], i = [], L, q, e, b, j = false, A = false, N, g, M = true, m = function () {
-        var AA = typeof J.getElementById != d && typeof J.getElementsByTagName != d && typeof J.createElement != d, AH = T.userAgent.toLowerCase(), y = T.platform.toLowerCase(), AE = y ? /win/.test(y) : /win/.test(AH), AC = y ? /mac/.test(y) : /mac/.test(AH), AF = /webkit/.test(AH) ? parseFloat(AH.replace(/^.*webkit\/(\d+(\.\d+)?).*$/, "$1")) : false, x = !+"\v1", AG = [0, 0, 0], AB = null;
-        if (typeof T.plugins != d && typeof T.plugins[s] == R) {
-            AB = T.plugins[s].description;
-            if (AB && !(typeof T.mimeTypes != d && T.mimeTypes[Q] && !T.mimeTypes[Q].enabledPlugin)) {
-                t = true;
-                x = false;
-                AB = AB.replace(/^.*\s+(\S+\s+\S+$)/, "$1");
-                AG[0] = parseInt(AB.replace(/^(.*)\..*$/, "$1"), 10);
-                AG[1] = parseInt(AB.replace(/^.*\.(.*)\s.*$/, "$1"), 10);
-                AG[2] = /[a-zA-Z]/.test(AB) ? parseInt(AB.replace(/^.*[a-zA-Z]+(.*)$/, "$1"), 10) : 0
-            }
-        } else {
-            if (typeof o.ActiveXObject != d) {
-                try {
-                    var AD = new ActiveXObject(w);
-                    if (AD) {
-                        AB = AD.GetVariable("$version");
-                        if (AB) {
-                            x = true;
-                            AB = AB.split(" ")[1].split(",");
-                            AG = [parseInt(AB[0], 10), parseInt(AB[1], 10), parseInt(AB[2], 10)]
+    var d = "undefined", R = "object", s = "Shockwave Flash", w = "ShockwaveFlash.ShockwaveFlash",
+        Q = "application/x-shockwave-flash", r = "SWFObjectExprInst", X = "onreadystatechange", o = window,
+        J = document, T = navigator, t = false, u = [H], O = [], n = [], i = [], L, q, e, b, j = false, A = false, N, g,
+        M = true, m = function () {
+            var AA = typeof J.getElementById != d && typeof J.getElementsByTagName != d && typeof J.createElement != d,
+                AH = T.userAgent.toLowerCase(), y = T.platform.toLowerCase(), AE = y ? /win/.test(y) : /win/.test(AH),
+                AC = y ? /mac/.test(y) : /mac/.test(AH),
+                AF = /webkit/.test(AH) ? parseFloat(AH.replace(/^.*webkit\/(\d+(\.\d+)?).*$/, "$1")) : false, x = !+"\v1",
+                AG = [0, 0, 0], AB = null;
+            if (typeof T.plugins != d && typeof T.plugins[s] == R) {
+                AB = T.plugins[s].description;
+                if (AB && !(typeof T.mimeTypes != d && T.mimeTypes[Q] && !T.mimeTypes[Q].enabledPlugin)) {
+                    t = true;
+                    x = false;
+                    AB = AB.replace(/^.*\s+(\S+\s+\S+$)/, "$1");
+                    AG[0] = parseInt(AB.replace(/^(.*)\..*$/, "$1"), 10);
+                    AG[1] = parseInt(AB.replace(/^.*\.(.*)\s.*$/, "$1"), 10);
+                    AG[2] = /[a-zA-Z]/.test(AB) ? parseInt(AB.replace(/^.*[a-zA-Z]+(.*)$/, "$1"), 10) : 0
+                }
+            } else {
+                if (typeof o.ActiveXObject != d) {
+                    try {
+                        var AD = new ActiveXObject(w);
+                        if (AD) {
+                            AB = AD.GetVariable("$version");
+                            if (AB) {
+                                x = true;
+                                AB = AB.split(" ")[1].split(",");
+                                AG = [parseInt(AB[0], 10), parseInt(AB[1], 10), parseInt(AB[2], 10)]
+                            }
                         }
+                    } catch (z) {
                     }
-                } catch (z) {
                 }
             }
-        }
-        return {w3: AA, pv: AG, wk: AF, ie: x, win: AE, mac: AC}
-    }(), K = function () {
-        if (!m.w3) {
-            return
-        }
-        if ((typeof J.readyState != d && J.readyState == "complete") || (typeof J.readyState == d && (J.getElementsByTagName("body")[0] || J.body))) {
-            F()
-        }
-        if (!j) {
-            if (typeof J.addEventListener != d) {
-                J.addEventListener("DOMContentLoaded", F, false)
+            return {w3: AA, pv: AG, wk: AF, ie: x, win: AE, mac: AC}
+        }(), K = function () {
+            if (!m.w3) {
+                return
             }
-            if (m.ie && m.win) {
-                J.attachEvent(X, function () {
-                    if (J.readyState == "complete") {
-                        J.detachEvent(X, arguments.callee);
-                        F()
+            if ((typeof J.readyState != d && J.readyState == "complete") || (typeof J.readyState == d && (J.getElementsByTagName("body")[0] || J.body))) {
+                F()
+            }
+            if (!j) {
+                if (typeof J.addEventListener != d) {
+                    J.addEventListener("DOMContentLoaded", F, false)
+                }
+                if (m.ie && m.win) {
+                    J.attachEvent(X, function () {
+                        if (J.readyState == "complete") {
+                            J.detachEvent(X, arguments.callee);
+                            F()
+                        }
+                    });
+                    if (o == top) {
+                        (function () {
+                            if (j) {
+                                return
+                            }
+                            try {
+                                J.documentElement.doScroll("left")
+                            } catch (x) {
+                                setTimeout(arguments.callee, 0);
+                                return
+                            }
+                            F()
+                        })()
                     }
-                });
-                if (o == top) {
+                }
+                if (m.wk) {
                     (function () {
                         if (j) {
                             return
                         }
-                        try {
-                            J.documentElement.doScroll("left")
-                        } catch (x) {
+                        if (!/loaded|complete/.test(J.readyState)) {
                             setTimeout(arguments.callee, 0);
                             return
                         }
                         F()
                     })()
                 }
+                S(F)
             }
-            if (m.wk) {
-                (function () {
-                    if (j) {
-                        return
-                    }
-                    if (!/loaded|complete/.test(J.readyState)) {
-                        setTimeout(arguments.callee, 0);
-                        return
-                    }
-                    F()
-                })()
-            }
-            S(F)
-        }
-    }();
+        }();
 
     function F() {
         if (j) {
@@ -269,7 +276,8 @@ var audioplayer_swfobject = function () {
                 AA.height = "137"
             }
             J.title = J.title.slice(0, 47) + " - Flash Player Installation";
-            var AD = m.ie && m.win ? "ActiveX" : "PlugIn", AC = "MMredirectURL=" + o.location.toString().replace(/&/g, "%26") + "&MMplayerType=" + AD + "&MMdoctitle=" + J.title;
+            var AD = m.ie && m.win ? "ActiveX" : "PlugIn",
+                AC = "MMredirectURL=" + o.location.toString().replace(/&/g, "%26") + "&MMplayerType=" + AD + "&MMdoctitle=" + J.title;
             if (typeof AB.flashvars != d) {
                 AB.flashvars += "&" + AC
             } else {

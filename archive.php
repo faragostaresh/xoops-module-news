@@ -21,9 +21,9 @@
 // Include module header
 require dirname(__FILE__) . '/header.php';
 // Include content template
-$xoopsOption ['template_main'] = 'news_archive.html';
+$xoopsOption ['template_main'] = 'news_archive.tpl';
 // include Xoops header
-include XOOPS_ROOT_PATH . '/header.php';
+require_once XOOPS_ROOT_PATH . '/header.php';
 // Add Stylesheet
 $xoTheme->addStylesheet(XOOPS_URL . '/modules/news/css/style.css');
 
@@ -32,12 +32,12 @@ include_once XOOPS_ROOT_PATH . '/language/' . $xoopsConfig['language'] . '/calen
 $lastyear = 0;
 $lastmonth = 0;
 
-$months_arr = array(1 => _CAL_JANUARY, 2 => _CAL_FEBRUARY, 3 => _CAL_MARCH, 4 => _CAL_APRIL, 5 => _CAL_MAY, 6 => _CAL_JUNE, 7 => _CAL_JULY, 8 => _CAL_AUGUST, 9 => _CAL_SEPTEMBER, 10 => _CAL_OCTOBER, 11 => _CAL_NOVEMBER, 12 => _CAL_DECEMBER);
+$months_arr = [1 => _CAL_JANUARY, 2 => _CAL_FEBRUARY, 3 => _CAL_MARCH, 4 => _CAL_APRIL, 5 => _CAL_MAY, 6 => _CAL_JUNE, 7 => _CAL_JULY, 8 => _CAL_AUGUST, 9 => _CAL_SEPTEMBER, 10 => _CAL_OCTOBER, 11 => _CAL_NOVEMBER, 12 => _CAL_DECEMBER];
 
-$fromyear = NewsUtils::News_UtilityCleanVars($_GET, 'year', 0, 'int');
-$frommonth = NewsUtils::News_UtilityCleanVars($_GET, 'month', 0, 'int');
-$start = NewsUtils::News_UtilityCleanVars($_GET, 'start', 0, 'int');
-$limit = NewsUtils::News_UtilityCleanVars($_GET, 'limit', 50, 'int');
+$fromyear = NewsUtils::NewsUtilityCleanVars($_GET, 'year', 0, 'int');
+$frommonth = NewsUtils::NewsUtilityCleanVars($_GET, 'month', 0, 'int');
+$start = NewsUtils::NewsUtilityCleanVars($_GET, 'start', 0, 'int');
+$limit = NewsUtils::NewsUtilityCleanVars($_GET, 'limit', 50, 'int');
 
 $pgtitle = '';
 if ($fromyear && $frommonth) {
@@ -58,9 +58,9 @@ if (is_object($xoopsUser)) {
     }
 }
 
-$result = $story_handler->News_StoryArchiveMonth();
-$years = array();
-$months = array();
+$result = $story_handler->NewsStoryArchiveMonth();
+$years = [];
+$months = [];
 $i = 0;
 
 while (list($time) = $xoopsDB->fetchRow($result)) {
@@ -79,7 +79,7 @@ while (list($time) = $xoopsDB->fetchRow($result)) {
         if ($lastyear != $this_year) {
             $years[$i]['number'] = $lastyear;
             $years[$i]['months'] = $months;
-            $months = array();
+            $months = [];
             $lastmonth = 0;
             $lastyear = $this_year;
             $i++;
@@ -105,9 +105,9 @@ if ($fromyear != 0 && $frommonth != 0) {
     $monthend = mktime(23 - $timeoffset, 59, 59, $frommonth + 1, 0, $fromyear);
     $monthend = ($monthend > time()) ? time() : $monthend;
 
-    $topics = $topic_handler->getall();
-    $archive = $story_handler->News_StoryArchive($monthstart, $monthend, $topics, $limit, $start);
-    $numrows = $story_handler->News_StoryArchiveCount($monthstart, $monthend, $topics);
+    $topics = $topic_handler->getAll();
+    $archive = $story_handler->NewsStoryArchive($monthstart, $monthend, $topics, $limit, $start);
+    $numrows = $story_handler->NewsStoryArchiveCount($monthstart, $monthend, $topics);
 
     if ($numrows > $limit) {
         $pagenav = new XoopsPageNav ($numrows, $limit, $start, 'start', 'limit=' . $limit . '&year=' . $fromyear . '&month=' . $frommonth);
@@ -125,5 +125,5 @@ if ($fromyear != 0 && $frommonth != 0) {
 
 
 // include Xoops footer
-include XOOPS_ROOT_PATH . '/footer.php';
+require_once XOOPS_ROOT_PATH . '/footer.php';
 ?>

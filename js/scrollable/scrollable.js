@@ -24,15 +24,15 @@
                 }
                 if (a.rotate) {
                     var n = h.length - 1;
-                    if (f < 0)return d.click(n, g);
-                    if (f > n)return d.click(0, g)
+                    if (f < 0) return d.click(n, g);
+                    if (f > n) return d.click(0, g)
                 }
                 if (!k.length) {
-                    if (j >= 0)return d;
+                    if (j >= 0) return d;
                     f = a.initialIndex;
                     k = h.eq(f)
                 }
-                if (f === j)return d;
+                if (f === j) return d;
                 g = g || c.Event();
                 g.type = "onBeforeClick";
                 l.trigger(g, [f]);
@@ -88,8 +88,8 @@
         i.find("a[href^=#]").bind("click.T", function (f) {
             d.click(c(this).attr("href"), f)
         });
-        if (location.hash)d.click(location.hash); else if (a.initialIndex ===
-            0 || a.initialIndex > 0)d.click(a.initialIndex)
+        if (location.hash) d.click(location.hash); else if (a.initialIndex ===
+            0 || a.initialIndex > 0) d.click(a.initialIndex)
     }
 
     c.tools = c.tools || {version: "1.2.3"};
@@ -139,7 +139,7 @@
             a.destroy();
             this.removeData("tabs")
         }
-        if (c.isFunction(b))b = {onBeforeClick: b};
+        if (c.isFunction(b)) b = {onBeforeClick: b};
         b = c.extend({},
             c.tools.tabs.conf, b);
         this.each(function () {
@@ -170,17 +170,17 @@
                 if (!h) {
                     var f = d.Event("onBeforePlay");
                     j.trigger(f);
-                    if (f.isDefaultPrevented())return c;
+                    if (f.isDefaultPrevented()) return c;
                     n = false;
                     h = setInterval(b.next, a.interval);
                     j.trigger("onPlay");
                     b.next()
                 }
             }, pause: function () {
-                if (!h)return c;
+                if (!h) return c;
                 var f = d.Event("onBeforePause");
                 j.trigger(f);
-                if (f.isDefaultPrevented())return c;
+                if (f.isDefaultPrevented()) return c;
                 h = clearInterval(h);
                 m = clearInterval(m);
                 j.trigger("onPause")
@@ -204,7 +204,7 @@
                 n || (l = setTimeout(c.play, a.interval))
             })
         }
-        if (a.autoplay)m =
+        if (a.autoplay) m =
             setTimeout(c.play, a.interval); else c.stop();
         a.clickable && b.getPanes().click(function () {
             b.next()
@@ -237,7 +237,7 @@
     d.fn.slideshow = function (g) {
         var a =
             this.data("slideshow");
-        if (a)return a;
+        if (a) return a;
         g = d.extend({}, q.conf, g);
         this.each(function () {
             a = new r(d(this), g);
@@ -248,33 +248,35 @@
 })(jQuery);
 (function (f) {
     function p(a, b, c) {
-        var h = c.relative ? a.position().top : a.offset().top, e = c.relative ? a.position().left : a.offset().left, i = c.position[0];
+        var h = c.relative ? a.position().top : a.offset().top, e = c.relative ? a.position().left : a.offset().left,
+            i = c.position[0];
         h -= b.outerHeight() - c.offset[0];
         e += a.outerWidth() + c.offset[1];
         var j = b.outerHeight() + a.outerHeight();
-        if (i == "center")h += j / 2;
-        if (i == "bottom")h += j;
+        if (i == "center") h += j / 2;
+        if (i == "bottom") h += j;
         i = c.position[1];
         a = b.outerWidth() + a.outerWidth();
-        if (i == "center")e -= a / 2;
-        if (i == "left")e -= a;
+        if (i == "center") e -= a / 2;
+        if (i == "left") e -= a;
         return {top: h, left: e}
     }
 
     function t(a, b) {
-        var c = this, h = a.add(c), e, i = 0, j = 0, m = a.attr("title"), q = n[b.effect], k, r = a.is(":input"), u = r && a.is(":checkbox, :radio, select, :button, :submit"),
+        var c = this, h = a.add(c), e, i = 0, j = 0, m = a.attr("title"), q = n[b.effect], k, r = a.is(":input"),
+            u = r && a.is(":checkbox, :radio, select, :button, :submit"),
             s = a.attr("type"), l = b.events[s] || b.events[r ? u ? "widget" : "input" : "def"];
-        if (!q)throw'Nonexistent effect "' + b.effect + '"';
+        if (!q) throw'Nonexistent effect "' + b.effect + '"';
         l = l.split(/,\s*/);
-        if (l.length != 2)throw"Tooltip: bad events configuration for " + s;
+        if (l.length != 2) throw"Tooltip: bad events configuration for " + s;
         a.bind(l[0], function (d) {
             clearTimeout(i);
-            if (b.predelay)j = setTimeout(function () {
+            if (b.predelay) j = setTimeout(function () {
                 c.show(d)
             }, b.predelay); else c.show(d)
         }).bind(l[1], function (d) {
             clearTimeout(j);
-            if (b.delay)i = setTimeout(function () {
+            if (b.delay) i = setTimeout(function () {
                 c.hide(d)
             }, b.delay); else c.hide(d)
         });
@@ -285,20 +287,20 @@
         f.extend(c, {
             show: function (d) {
                 if (!e) {
-                    if (m)e =
-                        f(b.layout).addClass(b.tipClass).appendTo(document.body).hide().append(m); else if (b.tip)e = f(b.tip).eq(0); else {
+                    if (m) e =
+                        f(b.layout).addClass(b.tipClass).appendTo(document.body).hide().append(m); else if (b.tip) e = f(b.tip).eq(0); else {
                         e = a.next();
                         e.length || (e = a.parent().next())
                     }
-                    if (!e.length)throw"Cannot find tooltip for " + a;
+                    if (!e.length) throw"Cannot find tooltip for " + a;
                 }
-                if (c.isShown())return c;
+                if (c.isShown()) return c;
                 e.stop(true, true);
                 var g = p(a, e, b);
                 d = d || f.Event();
                 d.type = "onBeforeShow";
                 h.trigger(d, [g]);
-                if (d.isDefaultPrevented())return c;
+                if (d.isDefaultPrevented()) return c;
                 g = p(a, e, b);
                 e.css({position: "absolute", top: g.top, left: g.left});
                 k = true;
@@ -317,7 +319,7 @@
                 });
                 return c
             }, hide: function (d) {
-                if (!e || !c.isShown())return c;
+                if (!e || !c.isShown()) return c;
                 d = d || f.Event();
                 d.type = "onBeforeHide";
                 h.trigger(d);
@@ -394,9 +396,9 @@
     };
     f.fn.tooltip = function (a) {
         var b = this.data("tooltip");
-        if (b)return b;
+        if (b) return b;
         a = f.extend(true, {}, f.tools.tooltip.conf, a);
-        if (typeof a.position == "string")a.position = a.position.split(/,?\s/);
+        if (typeof a.position == "string") a.position = a.position.split(/,?\s/);
         this.each(function () {
             b = new t(f(this), a);
             f(this).data("tooltip", b)
@@ -416,14 +418,15 @@
     });
     var e = {up: ["-", "top"], down: ["+", "top"], left: ["-", "left"], right: ["+", "left"]};
     i.addEffect("slide", function (g) {
-        var a = this.getConf(), f = this.getTip(), b = a.slideFade ? {opacity: a.opacity} : {}, c = e[a.direction] || e.up;
+        var a = this.getConf(), f = this.getTip(), b = a.slideFade ? {opacity: a.opacity} : {},
+            c = e[a.direction] || e.up;
         b[c[1]] = c[0] + "=" + a.slideOffset;
         a.slideFade && f.css({opacity: 0});
         f.show().animate(b, a.slideInSpeed, g)
     }, function (g) {
         var a = this.getConf(), f = a.slideOffset,
             b = a.slideFade ? {opacity: 0} : {}, c = e[a.direction] || e.up, h = "" + c[0];
-        if (a.bounce)h = h == "+" ? "-" : "+";
+        if (a.bounce) h = h == "+" ? "-" : "+";
         b[c[1]] = h + "=" + f;
         this.getTip().animate(b, a.slideOutSpeed, function () {
             d(this).hide();
@@ -438,14 +441,14 @@
     }
 
     function k(a) {
-        for (var c = a.length; c--;)if (a[c])return false;
+        for (var c = a.length; c--;) if (a[c]) return false;
         return true
     }
 
     var i = g.tools.tooltip;
     i.dynamic = {conf: {classNames: "top right bottom left"}};
     g.fn.dynamic = function (a) {
-        if (typeof a == "number")a = {speed: a};
+        if (typeof a == "number") a = {speed: a};
         a = g.extend({}, i.dynamic.conf, a);
         var c = a.classNames.split(/\s/), d;
         this.each(function () {
@@ -481,8 +484,8 @@
                             b.position[1] = "left";
                             e.addClass(c[3])
                         }
-                        if (f[0] || f[2])b.offset[0] *= -1;
-                        if (f[1] || f[3])b.offset[1] *= -1
+                        if (f[0] || f[2]) b.offset[0] *= -1;
+                        if (f[1] || f[3]) b.offset[1] *= -1
                     }
                     e.css({visibility: "visible"}).hide()
                 });
@@ -512,7 +515,7 @@
     function t(f, c) {
         var a = this, l = f.add(a), g = f.children(), k = 0, m = c.vertical;
         j || (j = a);
-        if (g.length > 1)g = e(c.items, f);
+        if (g.length > 1) g = e(c.items, f);
         e.extend(a, {
             getConf: function () {
                 return c
@@ -550,22 +553,22 @@
                 l.trigger("onAddItem", [b]);
                 return a
             }, seekTo: function (b, d, h) {
-                if (c.circular && b === 0 && k == -1 && d !== 0)return a;
-                if (!c.circular && b < 0 || b > a.getSize() || b < -1)return a;
+                if (c.circular && b === 0 && k == -1 && d !== 0) return a;
+                if (!c.circular && b < 0 || b > a.getSize() || b < -1) return a;
                 var i = b;
-                if (b.jquery)b = a.getItems().index(b); else i = a.getItems().eq(b);
+                if (b.jquery) b = a.getItems().index(b); else i = a.getItems().eq(b);
                 var q = e.Event("onBeforeSeek");
                 if (!h) {
                     l.trigger(q, [b, d]);
-                    if (q.isDefaultPrevented() || !i.length)return a
+                    if (q.isDefaultPrevented() || !i.length) return a
                 }
                 i = m ? {top: -i.position().top} : {left: -i.position().left};
                 k = b;
                 j = a;
-                if (d === undefined)d = c.speed;
+                if (d === undefined) d = c.speed;
                 g.animate(i, d, c.easing, h || function () {
-                        l.trigger("onSeek", [b])
-                    });
+                    l.trigger("onSeek", [b])
+                });
                 return a
             }
         });
@@ -581,7 +584,7 @@
                 s = a.getItems().eq(1).clone().appendTo(g);
             r.add(s).addClass(c.clonedClass);
             a.onBeforeSeek(function (b, d, h) {
-                if (!b.isDefaultPrevented())if (d == -1) {
+                if (!b.isDefaultPrevented()) if (d == -1) {
                     a.seekTo(r, h, function () {
                         a.end(0)
                     });
@@ -613,7 +616,7 @@
             }
         });
         c.keyboard && e(document).bind("keydown.scrollable", function (b) {
-            if (!(!c.keyboard || b.altKey || b.ctrlKey || e(b.target).is(":input")))if (!(c.keyboard != "static" && j != a)) {
+            if (!(!c.keyboard || b.altKey || b.ctrlKey || e(b.target).is(":input"))) if (!(c.keyboard != "static" && j != a)) {
                 var d = b.keyCode;
                 if (m && (d == 38 || d == 40)) {
                     a.move(d == 38 ? -1 : 1);
@@ -651,7 +654,7 @@
     var j;
     e.fn.scrollable = function (f) {
         var c = this.data("scrollable");
-        if (c)return c;
+        if (c) return c;
         f = e.extend({}, e.tools.scrollable.conf, f);
         this.each(function () {
             c = new t(e(this), f);
@@ -665,11 +668,11 @@
     var g = c.tools.scrollable;
     g.autoscroll = {conf: {autoplay: true, interval: 3E3, autopause: true}};
     c.fn.autoscroll = function (d) {
-        if (typeof d == "number")d = {interval: d};
+        if (typeof d == "number") d = {interval: d};
         var b = c.extend({}, g.autoscroll.conf, d), h;
         this.each(function () {
             var a = c(this).data("scrollable");
-            if (a)h = a;
+            if (a) h = a;
             var e, i, f = true;
             a.play = function () {
                 if (!e) {
@@ -716,14 +719,14 @@
         }
     };
     d.fn.navigator = function (c) {
-        if (typeof c == "string")c = {navi: c};
+        if (typeof c == "string") c = {navi: c};
         c = d.extend({}, m.navigator.conf, c);
         var g;
         this.each(function () {
             function h(a, b, i) {
                 e.seekTo(b);
                 if (j) {
-                    if (location.hash)location.hash = a.attr("href").replace("#", "")
+                    if (location.hash) location.hash = a.attr("href").replace("#", "")
                 } else return i.preventDefault()
             }
 
@@ -748,8 +751,9 @@
                 a.click()
             }
 
-            var e = d(this).data("scrollable"), k = p(e.getRoot(), c.navi), q = e.getNaviButtons(), l = c.activeClass, j = c.history && d.fn.history;
-            if (e)g = e;
+            var e = d(this).data("scrollable"), k = p(e.getRoot(), c.navi), q = e.getNaviButtons(), l = c.activeClass,
+                j = c.history && d.fn.history;
+            if (e) g = e;
             e.getNaviButtons = function () {
                 return q.add(k)
             };
@@ -780,23 +784,24 @@
 })(jQuery);
 (function (a) {
     function t(d, b) {
-        var c = this, i = d.add(c), o = a(window), k, f, m, g = a.tools.expose && (b.mask || b.expose), n = Math.random().toString().slice(10);
+        var c = this, i = d.add(c), o = a(window), k, f, m, g = a.tools.expose && (b.mask || b.expose),
+            n = Math.random().toString().slice(10);
         if (g) {
-            if (typeof g == "string")g = {color: g};
+            if (typeof g == "string") g = {color: g};
             g.closeOnClick = g.closeOnEsc = false
         }
         var p = b.target || d.attr("rel");
         f = p ? a(p) : d;
-        if (!f.length)throw"Could not find Overlay: " + p;
+        if (!f.length) throw"Could not find Overlay: " + p;
         d && d.index(f) == -1 && d.click(function (e) {
             c.load(e);
             return e.preventDefault()
         });
         a.extend(c, {
             load: function (e) {
-                if (c.isOpened())return c;
+                if (c.isOpened()) return c;
                 var h = q[b.effect];
-                if (!h)throw'Overlay: cannot find effect : "' + b.effect +
+                if (!h) throw'Overlay: cannot find effect : "' + b.effect +
                 '"';
                 b.oneInstance && a.each(s, function () {
                     this.close(e)
@@ -804,12 +809,12 @@
                 e = e || a.Event();
                 e.type = "onBeforeLoad";
                 i.trigger(e);
-                if (e.isDefaultPrevented())return c;
+                if (e.isDefaultPrevented()) return c;
                 m = true;
                 g && a(f).expose(g);
                 var j = b.top, r = b.left, u = f.outerWidth({margin: true}), v = f.outerHeight({margin: true});
-                if (typeof j == "string")j = j == "center" ? Math.max((o.height() - v) / 2, 0) : parseInt(j, 10) / 100 * o.height();
-                if (r == "center")r = Math.max((o.width() - u) / 2, 0);
+                if (typeof j == "string") j = j == "center" ? Math.max((o.height() - v) / 2, 0) : parseInt(j, 10) / 100 * o.height();
+                if (r == "center") r = Math.max((o.width() - u) / 2, 0);
                 h[0].call(c, {top: j, left: r}, function () {
                     if (m) {
                         e.type = "onLoad";
@@ -826,7 +831,7 @@
                 });
                 return c
             }, close: function (e) {
-                if (!c.isOpened())return c;
+                if (!c.isOpened()) return c;
                 e = e || a.Event();
                 e.type = "onBeforeClose";
                 i.trigger(e);
@@ -908,8 +913,8 @@
     });
     a.fn.overlay = function (d) {
         var b = this.data("overlay");
-        if (b)return b;
-        if (a.isFunction(d))d = {onBeforeLoad: d};
+        if (b) return b;
+        if (a.isFunction(d)) d = {onBeforeLoad: d};
         d = a.extend(true, {}, a.tools.overlay.conf, d);
         this.each(function () {
             b = new t(a(this), d);
@@ -927,11 +932,13 @@
 
     var k = i.tools.overlay, f = i(window);
     i.extend(k.conf, {start: {top: null, left: null}, fadeInSpeed: "fast", zIndex: 9999});
+
     function n(b, d) {
-        var a = this.getOverlay(), c = this.getConf(), g = this.getTrigger(), o = this, l = a.outerWidth({margin: true}), h = a.data("img");
+        var a = this.getOverlay(), c = this.getConf(), g = this.getTrigger(), o = this,
+            l = a.outerWidth({margin: true}), h = a.data("img");
         if (!h) {
             var e = a.css("backgroundImage");
-            if (!e)throw"background-image CSS property not set for overlay";
+            if (!e) throw"background-image CSS property not set for overlay";
             e = e.slice(e.indexOf("(") + 1, e.indexOf(")")).replace(/\"/g, "");
             a.css("backgroundImage", "none");
             h = i('<img src="' + e + '"/>');

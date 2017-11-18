@@ -26,7 +26,7 @@ class news_topic extends XoopsObject
     /**
      * Class constructor
      */
-    public function news_topic()
+    public function __construct()
     {
 
         $this->initVar("topic_id", XOBJ_DTYPE_INT, '');
@@ -146,9 +146,9 @@ class news_topic extends XoopsObject
         $form->addElement(new XoopsFormText (_NEWS_AM_TOPIC_COLUMNS, "topic_columns", 50, 255, $this->getVar("topic_columns")));
 
         //permissions
-        $member_handler = &xoops_gethandler('member');
-        $group_list = &$member_handler->getGroupList();
-        $gperm_handler = &xoops_gethandler('groupperm');
+        $member_handler = xoops_gethandler('member');
+        $group_list = $member_handler->getGroupList();
+        $gperm_handler = xoops_gethandler('groupperm');
         $full_list = array_keys($group_list);
         global $xoopsModule;
         if (!$this->isNew()) {
@@ -190,7 +190,7 @@ class news_topic extends XoopsObject
      **/
     public function toArray()
     {
-        $ret = array();
+        $ret = [];
         $vars = $this->getVars();
         foreach (array_keys($vars) as $i) {
             $ret [$i] = $this->getVar($i);
@@ -204,9 +204,9 @@ class news_topic extends XoopsObject
 class NewsTopicHandler extends XoopsPersistableObjectHandler
 {
 
-    public function NewsTopicHandler($db)
+    public function __construct($db)
     {
-        parent::XoopsPersistableObjectHandler($db, 'news_topic', 'news_topic', 'topic_id', 'topic_alias');
+        parent::__construct($db, 'news_topic', 'news_topic', 'topic_id', 'topic_alias');
     }
 
 
@@ -216,7 +216,7 @@ class NewsTopicHandler extends XoopsPersistableObjectHandler
      * @param   String $alias
      * @return  boolean
      **/
-    public function News_TopicExistAlias($infos)
+    public function NewsTopicExistAlias($infos)
     {
         $criteria = new CriteriaCompo ();
         $criteria->add(new Criteria ('topic_alias', $infos['topic_alias']));
@@ -233,7 +233,7 @@ class NewsTopicHandler extends XoopsPersistableObjectHandler
     /**
      * Get id from alias
      */
-    public function News_TopicGetId($alias)
+    public function NewsTopicGetId($alias)
     {
         $criteria = new CriteriaCompo ();
         $criteria = new Criteria ('topic_alias', $alias);
@@ -248,9 +248,9 @@ class NewsTopicHandler extends XoopsPersistableObjectHandler
     /**
      * Get topic information
      */
-    public function News_TopicAdminList($topic_limit, $topic_start)
+    public function NewsTopicAdminList($topic_limit, $topic_start)
     {
-        $ret = array();
+        $ret = [];
         $criteria = new CriteriaCompo ();
         $criteria->setSort('topic_id');
         $criteria->setOrder('DESC');
@@ -259,9 +259,9 @@ class NewsTopicHandler extends XoopsPersistableObjectHandler
         $topics = $this->getObjects($criteria, false);
         if ($topics) {
             foreach ($topics as $root) {
-                $tab = array();
+                $tab = [];
                 $tab = $root->toArray();
-                $tab ['topicurl'] = NewsUtils::News_UtilityTopicUrl($tab);
+                $tab ['topicurl'] = NewsUtils::NewsUtilityTopicUrl($tab);
                 $tab ['thumburl'] = XOOPS_URL . xoops_getModuleOption('img_dir', 'news') . '/thumb/' . $root->getVar('topic_img');
                 $tab ['imageurl'] = XOOPS_URL . xoops_getModuleOption('img_dir', 'news') . '/medium/' . $root->getVar('topic_img');
                 $ret [] = $tab;
@@ -270,9 +270,9 @@ class NewsTopicHandler extends XoopsPersistableObjectHandler
         return $ret;
     }
 
-    public function News_TopicList($topic_limit, $topic_start, $newscountbytopic = null)
+    public function NewsTopicList($topic_limit, $topic_start, $newscountbytopic = null)
     {
-        $ret = array();
+        $ret = [];
         $criteria = new CriteriaCompo ();
         $criteria->add(new Criteria ('topic_online', 1));
         $criteria->setSort('topic_id');
@@ -282,9 +282,9 @@ class NewsTopicHandler extends XoopsPersistableObjectHandler
         $topics = $this->getObjects($criteria, false);
         if ($topics) {
             foreach ($topics as $root) {
-                $tab = array();
+                $tab = [];
                 $tab = $root->toArray();
-                $tab ['topicurl'] = NewsUtils::News_UtilityTopicUrl($tab);
+                $tab ['topicurl'] = NewsUtils::NewsUtilityTopicUrl($tab);
                 $tab ['thumburl'] = XOOPS_URL . xoops_getModuleOption('img_dir', 'news') . '/thumb/' . $root->getVar('topic_img');
                 $tab ['imageurl'] = XOOPS_URL . xoops_getModuleOption('img_dir', 'news') . '/medium/' . $root->getVar('topic_img');
                 if (isset($newscountbytopic[$root->getVar('topic_id')])) {
@@ -295,14 +295,14 @@ class NewsTopicHandler extends XoopsPersistableObjectHandler
                 $ret [] = $tab;
             }
         }
-        $ret = NewsUtils::News_UtilityGetTree($ret);
+        $ret = NewsUtils::NewsUtilityGetTree($ret);
         return $ret;
     }
 
     /**
      * Get topic Count
      */
-    public function News_TopicCount()
+    public function NewsTopicCount()
     {
         $criteria = new CriteriaCompo ();
         return $this->getCount($criteria);
@@ -311,14 +311,14 @@ class NewsTopicHandler extends XoopsPersistableObjectHandler
     /**
      * Get topic from ID
      */
-    public function News_TopicFromId($topicid)
+    public function NewsTopicFromId($topicid)
     {
-        $myts = &MyTextSanitizer::getInstance();
+        $myts = MyTextSanitizer::getInstance();
         $topicid = intval($topicid);
         $topic_title = '';
         if ($topicid > 0) {
             $topic_handler = xoops_getmodulehandler('topic', 'news');
-            $topic = &$topic_handler->get($topicid);
+            $topic = $topic_handler->get($topicid);
             if (is_object($topic)) {
                 $topic_title = $topic->getVar('topic_title');
             }
@@ -337,9 +337,9 @@ class NewsTopicHandler extends XoopsPersistableObjectHandler
     /**
      * Get All of sub topics
      */
-    public function News_TopicSubId($id, $topics)
+    public function NewsTopicSubId($id, $topics)
     {
-        $ret = array();
+        $ret = [];
         $ret [] = $id;
         foreach ($topics as $root) {
             if ($root->getVar('topic_pid') == $id) {
@@ -352,21 +352,21 @@ class NewsTopicHandler extends XoopsPersistableObjectHandler
     /**
      * Get sub topics list
      */
-    public function News_TopicSubIdList($topic_pid = null)
+    public function NewsTopicSubIdList($topic_pid = null)
     {
         if (!isset($topic_pid)) {
             $topic_pid = 0;
         }
-        $ret = array();
+        $ret = [];
         $criteria = new CriteriaCompo ();
         $criteria->add(new Criteria ('topic_online', 1));
         $criteria->add(new Criteria ('topic_pid', $topic_pid));
         $topics = $this->getObjects($criteria, false);
         if ($topics) {
             foreach ($topics as $root) {
-                $tab = array();
+                $tab = [];
                 $tab = $root->toArray();
-                $tab['topic_url'] = NewsUtils::News_UtilityTopicUrl($tab);
+                $tab['topic_url'] = NewsUtils::NewsUtilityTopicUrl($tab);
                 $ret [] = $tab;
             }
         }
@@ -376,7 +376,7 @@ class NewsTopicHandler extends XoopsPersistableObjectHandler
     /**
      * Set order
      */
-    public function News_TopicOrder()
+    public function NewsTopicOrder()
     {
         $criteria = new CriteriaCompo ();
         $criteria->setSort('topic_weight');
@@ -393,9 +393,9 @@ class NewsTopicHandler extends XoopsPersistableObjectHandler
     /**
      * Get all visible topics
      */
-    public function News_TopicAllVisible($topics, $topic)
+    public function NewsTopicAllVisible($topics, $topic)
     {
-        $topic_show = array();
+        $topic_show = [];
         if ($topic) {
             $topic_show[] = $topic;
         }
@@ -410,9 +410,9 @@ class NewsTopicHandler extends XoopsPersistableObjectHandler
     /**
      *
      */
-    public function News_TopicBlockList($info)
+    public function NewsTopicBlockList($info)
     {
-        $ret = array();
+        $ret = [];
         $criteria = new CriteriaCompo ();
         $criteria->add(new Criteria ('topic_asmenu', 1));
         $criteria->add(new Criteria ('topic_online', 1));
@@ -421,9 +421,9 @@ class NewsTopicHandler extends XoopsPersistableObjectHandler
         $topics = $this->getObjects($criteria, false);
         if ($topics) {
             foreach ($topics as $root) {
-                $tab = array();
+                $tab = [];
                 $tab = $root->toArray();
-                $tab ['topicurl'] = NewsUtils::News_UtilityTopicUrl($tab);
+                $tab ['topicurl'] = NewsUtils::NewsUtilityTopicUrl($tab);
                 $tab ['thumburl'] = XOOPS_URL . xoops_getModuleOption('img_dir', 'news') . '/thumb/' . $root->getVar('topic_img');
                 $tab ['imageurl'] = XOOPS_URL . xoops_getModuleOption('img_dir', 'news') . '/medium/' . $root->getVar('topic_img');
                 if (isset($info['newscountbytopic'])) {

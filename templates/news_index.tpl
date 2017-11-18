@@ -1,23 +1,23 @@
-<{include file="db:news_header.html"}>
+<{include file="db:news_header.tpl"}>
 <div class="news">
     <{if $sub_topic}>
-    <{include file="db:news_index_topic.html"}>
+    <{include file="db:news_index_topic.tpl"}>
     <{/if}>
     <{if $advertisement}>
     <div class="itemAde"><{$advertisement}></div>
     <{/if}>
     <{if $type == type1 || $type == type3}>
     <{if $default}>
-    <{include file="db:news_index_default.html"}>
+    <{include file="db:news_index_default.tpl"}>
     <{/if}>
     <{if $showtype == 1 && ($story_limit != 0 || !$story_topic)}>
-    <{include file="db:news_index_news.html"}>
+    <{include file="db:news_index_news.tpl"}>
     <{elseif $showtype == 2 && ($story_limit != 0 || !$story_topic)}>
-    <{include file="db:news_index_table.html"}>
+    <{include file="db:news_index_table.tpl"}>
     <{elseif $showtype == 3 && ($story_limit != 0 || !$story_topic)}>
-    <{include file="db:news_index_photo.html"}>
+    <{include file="db:news_index_photo.tpl"}>
     <{elseif $showtype == 4 && ($story_limit != 0 || !$story_topic)}>
-    <{include file="db:news_index_list.html"}>
+    <{include file="db:news_index_list.tpl"}>
     <{/if}>
     <{if $story_pagenav}>
     <div class="pagenave"><{$story_pagenav}></div>
@@ -47,6 +47,6 @@
         </tbody>
     </table>
     <{elseif $type == type4}>
-    <{include file="db:news_index_default.html"}>
+    <{include file="db:news_index_default.tpl"}>
     <{/if}>
 </div>

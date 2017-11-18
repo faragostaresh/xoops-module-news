@@ -15,39 +15,39 @@
  */
 
 $i = 1;
-$adminmenu[$i] = array(
+$adminmenu[$i] = [
     'title' => _NEWS_MI_HOME,
-    'link' => 'admin/index.php',
-    'icon' => 'images/admin/home.png');
+    'link'  => 'admin/index.php',
+    'icon'  => 'images/admin/home.png'];
 $i++;
-$adminmenu[$i] = array(
+$adminmenu[$i] = [
     'title' => _NEWS_MI_TOPIC,
-    'link' => 'admin/topic.php',
-    'icon' => 'images/admin/category.png');
+    'link'  => 'admin/topic.php',
+    'icon'  => 'images/admin/category.png'];
 $i++;
-$adminmenu[$i] = array(
+$adminmenu[$i] = [
     'title' => _NEWS_MI_ARTICLE,
-    'link' => 'admin/article.php',
-    'icon' => 'images/admin/content.png');
+    'link'  => 'admin/article.php',
+    'icon'  => 'images/admin/content.png'];
 $i++;
-$adminmenu[$i] = array(
+$adminmenu[$i] = [
     'title' => _NEWS_MI_FILE,
-    'link' => 'admin/file.php',
-    'icon' => 'images/admin/file.png');
+    'link'  => 'admin/file.php',
+    'icon'  => 'images/admin/file.png'];
 $i++;
-$adminmenu[$i] = array(
+$adminmenu[$i] = [
     'title' => _NEWS_MI_TOOLS,
-    'link' => 'admin/tools.php',
-    'icon' => 'images/admin/administration.png');
+    'link'  => 'admin/tools.php',
+    'icon'  => 'images/admin/administration.png'];
 $i++;
-$adminmenu[$i] = array(
+$adminmenu[$i] = [
     'title' => _NEWS_MI_PERM,
-    'link' => 'admin/permissions.php',
-    'icon' => 'images/admin/permissions.png');
+    'link'  => 'admin/permissions.php',
+    'icon'  => 'images/admin/permissions.png'];
 $i++;
-$adminmenu[$i] = array(
+$adminmenu[$i] = [
     'title' => _NEWS_MI_ABOUT,
-    'link' => 'admin/about.php',
-    'icon' => 'images/admin/about.png');
+    'link'  => 'admin/about.php',
+    'icon'  => 'images/admin/about.png'];
 
 ?>

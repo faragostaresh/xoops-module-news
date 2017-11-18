@@ -31,7 +31,7 @@ function news_list_show($options)
 
     global $xoTheme;
 
-    $block = array();
+    $block = [];
     $show = $options[1];
     $story_infos['story_limit'] = $options[2];
     $story_infos['lenght_title'] = $options[3];
@@ -77,17 +77,17 @@ function news_list_show($options)
 
     // Set topic limit
     if ($topiclimit) {
-        $topics = array();
-        $topics[] = NewsUtils::News_UtilityCleanVars($_GET, 'storytopic', 0, 'int');
+        $topics = [];
+        $topics[] = NewsUtils::NewsUtilityCleanVars($_GET, 'storytopic', 0, 'int');
     } else {
         $topics = $options;
     }
 
-    $story_infos ['topics'] = $topic_handler->getall();
-    $stores = $story_handler->News_StoryBlockList($story_infos, $topics);
+    $story_infos ['topics'] = $topic_handler->getAll();
+    $stores = $story_handler->NewsStoryBlockList($story_infos, $topics);
 
     if ($show == 'spotlight' || $show == 'spotlight2') {
-        $id = $story_handler->News_StorySpotlightId($stores);
+        $id = $story_handler->NewsStorySpotlightId($stores);
         $block['spotlightid'] = $id['spotlightid'];
         $block['subspotlightid1'] = $id['subspotlightid1'];
         $block['subspotlightid2'] = $id['subspotlightid2'];
@@ -122,7 +122,7 @@ function news_list_edit($options)
     $criteria = new CriteriaCompo();
     $criteria->setSort('topic_weight ASC, topic_title');
     $criteria->setOrder('ASC');
-    $topic_arr = $topic_handler->getall($criteria);
+    $topic_arr = $topic_handler->getAll($criteria);
 
     //$form = _NEWS_MB_DISP . "&nbsp;\n";
     $form = "<input type=\"hidden\" name=\"options[]\" value=\"" . $options[0] . "\" />";

@@ -26,7 +26,7 @@ class news_file extends XoopsObject
     /**
      * Class constructor
      */
-    public function news_file()
+    public function __construct()
     {
         $this->initVar("file_id", XOBJ_DTYPE_INT, '');
         $this->initVar("file_title", XOBJ_DTYPE_TXTBOX, '');
@@ -98,7 +98,7 @@ class news_file extends XoopsObject
      **/
     public function toArray()
     {
-        $ret = array();
+        $ret = [];
         $vars = $this->getVars();
         foreach (array_keys($vars) as $i) {
             $ret [$i] = $this->getVar($i);
@@ -111,17 +111,17 @@ class news_file extends XoopsObject
 class NewsFileHandler extends XoopsPersistableObjectHandler
 {
 
-    public function NewsFileHandler($db)
+    public function __construct($db)
     {
-        parent::XoopsPersistableObjectHandler($db, 'news_file', 'news_file', 'file_id', 'file_title');
+        parent::__construct($db, 'news_file', 'news_file', 'file_id', 'file_title');
     }
 
     /**
      * Get file list in admin side
      */
-    public function News_FileAdminList($file, $story)
+    public function NewsFileAdminList($file, $story)
     {
-        $ret = array();
+        $ret = [];
         $criteria = new CriteriaCompo ();
         if (isset($file['content'])) {
             $criteria->add(new Criteria ('file_story', $file['content']));
@@ -136,7 +136,7 @@ class NewsFileHandler extends XoopsPersistableObjectHandler
         $files = $this->getObjects($criteria, false);
         if ($files) {
             foreach ($files as $root) {
-                $tab = array();
+                $tab = [];
                 $tab = $root->toArray();
                 if (is_array($story)) {
                     foreach (array_keys($story) as $i) {
@@ -161,9 +161,9 @@ class NewsFileHandler extends XoopsPersistableObjectHandler
     /**
      * Get file list for each content
      */
-    public function News_FileList($file)
+    public function NewsFileList($file)
     {
-        $ret = array();
+        $ret = [];
         $criteria = new CriteriaCompo ();
         $criteria->add(new Criteria ('file_story', $file['content']));
         $criteria->add(new Criteria ('file_status', 1));
@@ -173,7 +173,7 @@ class NewsFileHandler extends XoopsPersistableObjectHandler
         $files = $this->getObjects($criteria, false);
         if ($files) {
             foreach ($files as $root) {
-                $tab = array();
+                $tab = [];
                 $tab = $root->toArray();
                 $tab ['fileurl'] = XOOPS_URL . xoops_getModuleOption('file_dir', 'news') . '/' . $root->getVar('file_name');
                 $ret [] = $tab;
@@ -185,7 +185,7 @@ class NewsFileHandler extends XoopsPersistableObjectHandler
     /**
      * Get file Count
      */
-    public function News_FileCount()
+    public function NewsFileCount()
     {
         $criteria = new CriteriaCompo ();
         return $this->getCount($criteria);

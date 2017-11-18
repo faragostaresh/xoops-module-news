@@ -81,9 +81,9 @@
 
         /* setup some functions */
         var plugin = $.editable.types[settings.type].plugin || function () {
-            };
+        };
         var submit = $.editable.types[settings.type].submit || function () {
-            };
+        };
         var buttons = $.editable.types[settings.type].buttons
             || $.editable.types['defaults'].buttons;
         var content = $.editable.types[settings.type].content
@@ -93,13 +93,13 @@
         var reset = $.editable.types[settings.type].reset
             || $.editable.types['defaults'].reset;
         var callback = settings.callback || function () {
-            };
+        };
         var onedit = settings.onedit || function () {
-            };
+        };
         var onsubmit = settings.onsubmit || function () {
-            };
+        };
         var onreset = settings.onreset || function () {
-            };
+        };
         var onerror = settings.onerror || reset;
 
         /* show tooltip */

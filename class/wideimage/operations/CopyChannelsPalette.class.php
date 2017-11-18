@@ -29,7 +29,7 @@ class wioCopyChannelsPalette
 
     function execute($img, $channels)
     {
-        $blank = array('red' => 0, 'green' => 0, 'blue' => 0);
+        $blank = ['red' => 0, 'green' => 0, 'blue' => 0];
         if (isset($channels['alpha']))
             unset($channels['alpha']);
 

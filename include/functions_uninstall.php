@@ -21,9 +21,9 @@
 
 function xoops_module_uninstall_news($module)
 {
-    $db =& $GLOBALS["xoopsDB"];
+    $db = $GLOBALS["xoopsDB"];
 
-    $created_tables = array(0 => 'news_story', 1 => 'news_topic', 2 => 'news_file');
+    $created_tables = [0 => 'news_story', 1 => 'news_topic', 2 => 'news_file'];
 
     foreach ($created_tables as $ct) {
         $db->query("DROP TABLE " . $db->prefix($ct));

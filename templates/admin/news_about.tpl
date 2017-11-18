@@ -1,4 +1,4 @@
-<{includeq file="$xoops_rootpath/modules/news/templates/admin/news_header.html"}>
+<{includeq file="$xoops_rootpath/modules/news/templates/admin/news_header.tpl"}>
 
 <div id="about">
     <div class="floatleft width50">

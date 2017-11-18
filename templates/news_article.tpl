@@ -1,4 +1,4 @@
-<{include file="db:news_header.html"}>
+<{include file="db:news_header.tpl"}>
 <div class="news">
     <div class="item">
         <div class="itemHead">
@@ -195,7 +195,7 @@
         </div>
     </div>
     <{if $tags}>
-    <div class="tagbar"><{include file="db:tag_bar.html"}></div>
+    <div class="tagbar"><{include file="db:tag_bar.tpl"}></div>
     <{/if}>
 
     <{if $content.story_file}>
@@ -208,7 +208,7 @@
     </ul>
     <{/if}>
 
-    <div class="bookmark"><{include file="db:news_bookmarkme.html"}></div>
+    <div class="bookmark"><{include file="db:news_bookmarkme.tpl"}></div>
 
     <{if $related}>
     <ul>
@@ -228,11 +228,11 @@
     <div class="comments" id="comm">
         <!-- start comments loop -->
         <{if $comment_mode == "flat"}>
-        <{include file="db:system_comments_flat.html"}>
+        <{include file="db:system_comments_flat.tpl"}>
         <{elseif $comment_mode == "thread"}>
-        <{include file="db:system_comments_thread.html"}>
+        <{include file="db:system_comments_thread.tpl"}>
         <{elseif $comment_mode == "nest"}>
-        <{include file="db:system_comments_nest.html"}>
+        <{include file="db:system_comments_nest.tpl"}>
         <{/if}>
         <!-- end comments loop -->
     </div>

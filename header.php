@@ -26,12 +26,13 @@ require_once XOOPS_ROOT_PATH . '/modules/news/include/functions.php';
 require_once XOOPS_ROOT_PATH . '/modules/news/class/perm.php';
 require_once XOOPS_ROOT_PATH . '/modules/news/class/utils.php';
 require_once XOOPS_ROOT_PATH . '/class/template.php';
-require_once XOOPS_ROOT_PATH . "/class/pagenav.php";
+require_once XOOPS_ROOT_PATH . '/class/pagenav.php';
 
 // Initialize content handler
 $story_handler = xoops_getmodulehandler('story', 'news');
 $topic_handler = xoops_getmodulehandler('topic', 'news');
 $file_handler = xoops_getmodulehandler('file', 'news');
 $rate_handler = xoops_getmodulehandler('rate', 'news');
-$perm_handler = NewsPermission::getHandler();
+$handler = new NewsPermission;
+$perm_handler = $handler->getHandler();
 ?>

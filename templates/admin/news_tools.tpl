@@ -1,4 +1,4 @@
-<{if $header}><{includeq file="$xoops_rootpath/modules/news/templates/admin/news_header.html"}><{/if}>
+<{if $header}><{includeq file="$xoops_rootpath/modules/news/templates/admin/news_header.tpl"}><{/if}>
 
 <div id="tools" class="marg5 pad5">
     <!-- Display clone form -->
