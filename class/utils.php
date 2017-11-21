@@ -39,13 +39,13 @@ class NewsUtils
             $uploader_img->fetchMedia($type);
             if (!$uploader_img->upload()) {
                 $errors = $uploader_img->getErrors();
-                self::News_UtilityRedirect("javascript:history.go(-1)", 3, $errors);
+                self::NewsUtilityRedirect("javascript:history.go(-1)", 3, $errors);
                 xoops_cp_footer();
                 exit ();
             } else {
                 $obj->setVar($type, $uploader_img->getSavedFileName());
-                self::News_UtilityResizePicture($pach_original . $uploader_img->getSavedFileName(), $pach_medium . $uploader_img->getSavedFileName(), xoops_getModuleOption('img_mediumwidth', 'news'), xoops_getModuleOption('img_mediumheight', 'news'));
-                self::News_UtilityResizePicture($pach_original . $uploader_img->getSavedFileName(), $pach_thumb . $uploader_img->getSavedFileName(), xoops_getModuleOption('img_thumbwidth', 'news'), xoops_getModuleOption('img_thumbheight', 'news'));
+                self::NewsUtilityResizePicture($pach_original . $uploader_img->getSavedFileName(), $pach_medium . $uploader_img->getSavedFileName(), xoops_getModuleOption('img_mediumwidth', 'news'), xoops_getModuleOption('img_mediumheight', 'news'));
+                self::NewsUtilityResizePicture($pach_original . $uploader_img->getSavedFileName(), $pach_thumb . $uploader_img->getSavedFileName(), xoops_getModuleOption('img_thumbwidth', 'news'), xoops_getModuleOption('img_thumbheight', 'news'));
             }
         } else {
             if (isset ($image)) {
@@ -111,7 +111,7 @@ class NewsUtils
             }
         } else {
             $errors = $uploader->getErrors();
-            self::News_UtilityRedirect("javascript:history.go(-1)", 3, $errors);
+            self::NewsUtilityRedirect("javascript:history.go(-1)", 3, $errors);
             xoops_cp_footer();
             exit ();
         }
@@ -419,7 +419,7 @@ class NewsUtils
         while ($start_id <= $end_id) {
             $obj = $handler->get($start_id);
             if ($obj) {
-                $new = self::News_UtilityDoRebuild($op, $obj->getVar($get, 'e'));
+                $new = self::NewsUtilityDoRebuild($op, $obj->getVar($get, 'e'));
                 $obj->setVar($set, $new);
                 $handler->insert($obj);
             }
@@ -429,7 +429,7 @@ class NewsUtils
 
         // Redirect
         if ($start_id <= $last_id) {
-            self::News_UtilityRedirect('tools.php?op=' . $op . '&start_id=' . $start_id . '&end_id=' . $end_id, 3, _NEWS_AM_MSG_INPROC);
+            self::NewsUtilityRedirect('tools.php?op=' . $op . '&start_id=' . $start_id . '&end_id=' . $end_id, 3, _NEWS_AM_MSG_INPROC);
             xoops_cp_footer();
             exit ();
         }
@@ -451,11 +451,11 @@ class NewsUtils
                 break;
 
             case 'keyword':
-                $item = self::News_UtilityMetaFilter($get);
+                $item = self::NewsUtilityMetaFilter($get);
                 break;
 
             case 'description':
-                $item = self::News_UtilityAjaxFilter($get);
+                $item = self::NewsUtilityAjaxFilter($get);
                 break;
         }
         return $item;
